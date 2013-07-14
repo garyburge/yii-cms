@@ -26,7 +26,7 @@ $this->breadcrumbs=array(
         ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-            'htmlOptions'=>array('style'=>'width:10%; white-space:nowrap; text-align:right;')
+            'htmlOptions'=>array('style'=>'width:10%; white-space:nowrap; text-align:right;'),
             'template'=>(Yii::app()->getModule('role')->hasRole(array('publisher', 'administrator')) ? '{delete}{update}' : '{update}'),
 		),
 	),
