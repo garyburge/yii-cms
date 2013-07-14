@@ -21,7 +21,7 @@ $this->breadcrumbs=array(
             'htmlOptions'=>array('style'=>'width:30%;')
         ),
 		array(
-            'description'=>'description',
+            'name'=>'description',
             'htmlOptions'=>array('style'=>'width:50%;')
         ),
 		array(
