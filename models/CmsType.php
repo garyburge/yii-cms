@@ -1,19 +1,18 @@
 <?php
 
 /**
- * This is the model class for table "content_section".
+ * This is the model class for table "cms_type".
  *
- * The followings are the available columns in table 'content_section':
+ * The followings are the available columns in table 'cms_type':
  * @property integer $id
  * @property string $name
- * @property string $description
  */
-class ContentSection extends CActiveRecord
+class CmsType extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ContentSection the static model class
+	 * @return CmsType the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -25,7 +24,7 @@ class ContentSection extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'content_section';
+		return 'cms_type';
 	}
 
 	/**
@@ -38,10 +37,9 @@ class ContentSection extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('name', 'length', 'max'=>64),
-			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +62,6 @@ class ContentSection extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'description' => 'Description',
 		);
 	}
 
@@ -81,7 +78,6 @@ class ContentSection extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

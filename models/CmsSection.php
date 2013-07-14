@@ -1,21 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "content_item".
+ * This is the model class for table "cms_section".
  *
- * The followings are the available columns in table 'content_item':
+ * The followings are the available columns in table 'cms_section':
  * @property integer $id
- * @property string $title
- * @property string $sub_title
- * @property string $abstract
- * @property string $content
+ * @property string $name
+ * @property string $description
  */
-class ContentItem extends CActiveRecord
+class CmsSection extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ContentItem the static model class
+	 * @return CmsSection the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +25,7 @@ class ContentItem extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'content_item';
+		return 'cms_section';
 	}
 
 	/**
@@ -38,12 +36,12 @@ class ContentItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content', 'required'),
-			array('title, sub_title', 'length', 'max'=>255),
-			array('abstract', 'safe'),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>64),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, sub_title, abstract, content', 'safe', 'on'=>'search'),
+			array('id, name, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,10 +63,8 @@ class ContentItem extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'sub_title' => 'Sub Title',
-			'abstract' => 'Abstract',
-			'content' => 'Content',
+			'name' => 'Name',
+			'description' => 'Description',
 		);
 	}
 
@@ -84,10 +80,8 @@ class ContentItem extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('sub_title',$this->sub_title,true);
-		$criteria->compare('abstract',$this->abstract,true);
-		$criteria->compare('content',$this->content,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

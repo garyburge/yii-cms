@@ -1,0 +1,15 @@
+{
+    "name": "yii-cms",
+    "description": "Yet Another CMS for Yii Framework",
+    "author": "Gary Burge <garyburge@garyburge.com>",
+    "contributors": [
+        {
+            "name": "Gary Burge",
+            "email": "garyburge@garyburge.com"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/garyburge/yii-cms.git"
+    },
+}

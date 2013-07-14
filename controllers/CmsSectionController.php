@@ -1,6 +1,6 @@
 <?php
 
-class ContentTypeController extends Controller
+class CmsSectionController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,14 +61,14 @@ class ContentTypeController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ContentType;
+		$model=new CmsSection;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ContentType']))
+		if(isset($_POST['CmsSection']))
 		{
-			$model->attributes=$_POST['ContentType'];
+			$model->attributes=$_POST['CmsSection'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -90,9 +90,9 @@ class ContentTypeController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ContentType']))
+		if(isset($_POST['CmsSection']))
 		{
-			$model->attributes=$_POST['ContentType'];
+			$model->attributes=$_POST['CmsSection'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -127,7 +127,7 @@ class ContentTypeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ContentType');
+		$dataProvider=new CActiveDataProvider('CmsSection');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -138,10 +138,10 @@ class ContentTypeController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ContentType('search');
+		$model=new CmsSection('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ContentType']))
-			$model->attributes=$_GET['ContentType'];
+		if(isset($_GET['CmsSection']))
+			$model->attributes=$_GET['CmsSection'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -155,7 +155,7 @@ class ContentTypeController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ContentType::model()->findByPk($id);
+		$model=CmsSection::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -167,7 +167,7 @@ class ContentTypeController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='content-type-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='content-section-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

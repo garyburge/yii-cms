@@ -1,6 +1,6 @@
 <?php
 
-class ContentItemController extends Controller
+class ItemController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,14 +61,14 @@ class ContentItemController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ContentItem;
+		$model=new Item;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ContentItem']))
+		if(isset($_POST['Item']))
 		{
-			$model->attributes=$_POST['ContentItem'];
+			$model->attributes=$_POST['Item'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -90,9 +90,9 @@ class ContentItemController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ContentItem']))
+		if(isset($_POST['Item']))
 		{
-			$model->attributes=$_POST['ContentItem'];
+			$model->attributes=$_POST['Item'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -127,7 +127,7 @@ class ContentItemController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ContentItem');
+		$dataProvider=new CActiveDataProvider('Item');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -138,10 +138,10 @@ class ContentItemController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ContentItem('search');
+		$model=new Item('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ContentItem']))
-			$model->attributes=$_GET['ContentItem'];
+		if(isset($_GET['Item']))
+			$model->attributes=$_GET['Item'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -155,7 +155,7 @@ class ContentItemController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ContentItem::model()->findByPk($id);
+		$model=Item::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
