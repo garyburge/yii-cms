@@ -3,12 +3,6 @@ $this->breadcrumbs=array(
 	'Content Types'=>array('admin'),
 	'Manage',
 );
-
-$this->menu=array(
-	array('label'=>'List ContentType','url'=>array('index')),
-	array('label'=>'Create ContentType','url'=>array('create')),
-);
-
 ?>
 
 <h1>Manage Content Types</h1>
@@ -35,7 +29,7 @@ $this->menu=array(
 
 <?php $this->widget('bootstrap.widgets.TbButton', array(
     'label'=>'Create Type',
-    ,'url'=>array('create'),
+    'url'=>array('create'),
     'type'=>'primary',
     'size'=>'small',
 )); ?>
