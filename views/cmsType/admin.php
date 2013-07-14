@@ -1,7 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Content Types'=>array('admin'),
-	'Manage',
+	'Manage Types',
 );
 ?>
 
@@ -27,7 +26,6 @@ $this->breadcrumbs=array(
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
             'htmlOptions'=>array('style'=>'width:10%; white-space:nowrap; text-align:right;'),
-            'template'=>(Yii::app()->getModule('role')->hasRole(array('publisher', 'administrator')) ? '{delete}{update}' : '{update}'),
 		),
 	),
 )); ?>

@@ -22,15 +22,11 @@ class CmsTypeController extends Controller
     {
         return array(
             array('allow',
-                'actions'=>array('admin', 'view', 'create', 'update'),
-                'roles'=>array('editor', 'publisher', 'administrator'),
-            ),
-            array('allow',
-                'actions'=>array('delete'),
-                'roles'=>array('publisher', 'administrator'),
+                  'actions'=>array('admin', 'view', 'create', 'update', 'delete'),
+                  'roles'=>array('publisher', 'administrator'),
             ),
             array('deny', // deny all users
-                'users'=>array('*'),
+                  'users'=>array('*'),
             ),
         );
     }

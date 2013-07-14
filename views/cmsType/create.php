@@ -1,15 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Content Types'=>array('index'),
+	'Content Types'=>array('admin'),
 	'Create',
-);
-
-$this->menu=array(
-	array('label'=>'List ContentType','url'=>array('index')),
-	array('label'=>'Manage ContentType','url'=>array('admin')),
 );
 ?>
 
-<h1>Create ContentType</h1>
+<h1>Create Content Type</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array(
+    'model'=>$model
+)); ?>
