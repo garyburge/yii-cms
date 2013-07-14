@@ -66,7 +66,7 @@ class CmsTypeController extends Controller
 		$model->unsetAttributes();
 
         // if paging information available
-		if(isset($_GET['CmsType']))
+		if(isset($_GET['CmsType'])) {
             // copy it to model
 			$model->attributes=$_GET['CmsType'];
         }
