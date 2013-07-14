@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Content Types'=>array('index'),
+	'Content Types'=>array('admin'),
 	'Manage',
 );
 
@@ -9,43 +9,33 @@ $this->menu=array(
 	array('label'=>'Create ContentType','url'=>array('create')),
 );
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('content-type-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
 <h1>Manage Content Types</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'content-type-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'name',
+        array(
+            'name'=>'id',
+            'htmlOptions'=>array('style'=>'width:10%;')
+        ),
+		array(
+            'name'=>'name',
+            'htmlOptions'=>array('style'=>'width:10%;')
+        ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+            'template'=>(Yii::app()->getModule('role')->hasRole(array('publisher', 'administrator')) ? '{delete}{update}' : '{update}'),
 		),
 	),
+)); ?>
+
+<?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Create Type',
+    ,'url'=>array('create'),
+    'type'=>'primary',
+    'size'=>'small',
 )); ?>
