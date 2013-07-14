@@ -25,6 +25,7 @@ $this->breadcrumbs=array(
         ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+            'template'=>'{delete}{update}',
             'htmlOptions'=>array('style'=>'width:10%; white-space:nowrap; text-align:right;'),
 		),
 	),
