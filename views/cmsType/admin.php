@@ -18,6 +18,11 @@ $this->breadcrumbs=array(
         ),
 		array(
             'name'=>'name',
+            'htmlOptions'=>array('style'=>'width:30%;')
+        ),
+		array(
+            'description'=>'description',
+            'htmlOptions'=>array('style'=>'width:50%;')
         ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
