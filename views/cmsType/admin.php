@@ -18,17 +18,17 @@ $this->breadcrumbs=array(
         ),
 		array(
             'name'=>'name',
-            'htmlOptions'=>array('style'=>'width:10%;')
         ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+            'htmlOptions'=>array('style'=>'width:10%; white-space:nowrap; text-align:right;')
             'template'=>(Yii::app()->getModule('role')->hasRole(array('publisher', 'administrator')) ? '{delete}{update}' : '{update}'),
 		),
 	),
 )); ?>
 
 <?php $this->widget('bootstrap.widgets.TbButton', array(
-    'label'=>'Create Type',
+    'label'=>'Create',
     'url'=>array('create'),
     'type'=>'primary',
     'size'=>'small',
