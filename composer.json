@@ -1,6 +1,6 @@
 {
     "name": "garyburge/yii-cms",
-    "description": "A simplified user access control platform that assigns users to 'roles', or groups, the membership of which may be tested for each controller action.",
+    "description": "Another Yii CMS",
     "keywords": [
         "yii",
         "module",
