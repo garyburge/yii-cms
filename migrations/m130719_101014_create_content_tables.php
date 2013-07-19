@@ -94,6 +94,80 @@ class m130719_101014_create_content_tables extends CDbMigration
         $this->createIndex('media_type_name', 'media_type', 'name', false);
         $this->createIndex('media_type_type', 'media_type', 'type', false);
 
+        // insert media type data
+        $this->insert('media_type', array(
+            'extension'=>'gif',
+            'name'=>'image',
+            'type'=>'image/gif',
+            'description'=>'gif image file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'jpg',
+            'name'=>'image',
+            'type'=>'image/jpeg',
+            'description'=>'jpg image file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'png',
+            'name'=>'image',
+            'type'=>'image/[mg',
+            'description'=>'[mg image file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'mp4',
+            'name'=>'audio',
+            'type'=>'audio/mp4',
+            'description'=>'mp4 audio file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'mpeg',
+            'name'=>'audio',
+            'type'=>'audio/mpeg',
+            'description'=>'mpeg audio file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'webm',
+            'name'=>'audio',
+            'type'=>'audio/webm',
+            'description'=>'webm audio file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'mpeg',
+            'name'=>'video',
+            'type'=>'view/mpeg',
+            'description'=>'mpeg video file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'mp4',
+            'name'=>'video',
+            'type'=>'video/mp4',
+            'description'=>'mp4 video file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'qt',
+            'name'=>'video',
+            'type'=>'video/quicktime',
+            'description'=>'quicktime video file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'webm',
+            'name'=>'video',
+            'type'=>'video/webm',
+            'description'=>'webm video file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'wmv',
+            'name'=>'video',
+            'type'=>'video/x-ms-wmv',
+            'description'=>'microsoft wmv video file',
+        ));
+        $this->insert('media_type', array(
+            'extension'=>'flv',
+            'name'=>'video',
+            'type'=>'video/x-flv',
+            'description'=>'adobe flash video file',
+        ));
+
         // create author content table
         $this->createTable('author_content', array(
             'id'=>'pk',
