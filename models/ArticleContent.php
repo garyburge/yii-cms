@@ -1,18 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "item_type".
+ * This is the model class for table "article_content".
  *
- * The followings are the available columns in table 'item_type':
- * @property integer $item_id
- * @property integer $type_id
+ * The followings are the available columns in table 'article_content':
+ * @property integer $article_id
+ * @property integer $content_id
+ * @property integer $widget_id
+ *
+ * The followings are the available model relations:
+ * @property Article $article
+ * @property Content $content
+ * @property Widget $widget
  */
-class ItemType extends CActiveRecord
+class ArticleContent extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ItemType the static model class
+	 * @return ArticleContent the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +30,7 @@ class ItemType extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'item_type';
+		return 'article_content';
 	}
 
 	/**
@@ -35,11 +41,11 @@ class ItemType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('item_id, type_id', 'required'),
-			array('item_id, type_id', 'numerical', 'integerOnly'=>true),
+			array('article_id, content_id, widget_id', 'required'),
+			array('article_id, content_id, widget_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('item_id, type_id', 'safe', 'on'=>'search'),
+			array('article_id, content_id, widget_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +57,9 @@ class ItemType extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'article' => array(self::BELONGS_TO, 'Article', 'article_id'),
+			'content' => array(self::BELONGS_TO, 'Content', 'content_id'),
+			'widget' => array(self::BELONGS_TO, 'Widget', 'widget_id'),
 		);
 	}
 
@@ -60,8 +69,9 @@ class ItemType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'item_id' => 'Item',
-			'type_id' => 'Type',
+			'article_id' => 'Article',
+			'content_id' => 'Content',
+			'widget_id' => 'Widget',
 		);
 	}
 
@@ -76,8 +86,9 @@ class ItemType extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('item_id',$this->item_id);
-		$criteria->compare('type_id',$this->type_id);
+		$criteria->compare('article_id',$this->article_id);
+		$criteria->compare('content_id',$this->content_id);
+		$criteria->compare('widget_id',$this->widget_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

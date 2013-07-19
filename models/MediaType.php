@@ -1,18 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "item_section".
+ * This is the model class for table "media_type".
  *
- * The followings are the available columns in table 'item_section':
- * @property integer $item_id
- * @property integer $section_id
+ * The followings are the available columns in table 'media_type':
+ * @property integer $id
+ * @property string $extension
+ * @property string $name
+ * @property string $type
+ * @property string $description
  */
-class ItemSection extends CActiveRecord
+class MediaType extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ItemSection the static model class
+	 * @return MediaType the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +27,7 @@ class ItemSection extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'item_section';
+		return 'media_type';
 	}
 
 	/**
@@ -35,11 +38,15 @@ class ItemSection extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('item_id, section_id', 'required'),
-			array('item_id, section_id', 'numerical', 'integerOnly'=>true),
+			array('id, extension, name, type', 'required'),
+			array('id', 'numerical', 'integerOnly'=>true),
+			array('extension', 'length', 'max'=>12),
+			array('name', 'length', 'max'=>64),
+			array('type', 'length', 'max'=>128),
+			array('description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('item_id, section_id', 'safe', 'on'=>'search'),
+			array('id, extension, name, type, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +67,11 @@ class ItemSection extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'item_id' => 'Item',
-			'section_id' => 'Section',
+			'id' => 'ID',
+			'extension' => 'Extension',
+			'name' => 'Name',
+			'type' => 'Type',
+			'description' => 'Description',
 		);
 	}
 
@@ -76,8 +86,11 @@ class ItemSection extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('item_id',$this->item_id);
-		$criteria->compare('section_id',$this->section_id);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('extension',$this->extension,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

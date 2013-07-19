@@ -1,18 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "author_item".
+ * This is the model class for table "byline".
  *
- * The followings are the available columns in table 'author_item':
+ * The followings are the available columns in table 'byline':
+ * @property integer $id
  * @property integer $author_id
- * @property integer $item_id
+ * @property string $byline
+ * @property string $title
+ *
+ * The followings are the available model relations:
+ * @property AuthorContent[] $authorContents
+ * @property Author $author
  */
-class AuthorItem extends CActiveRecord
+class Byline extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return AuthorItem the static model class
+	 * @return Byline the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +30,7 @@ class AuthorItem extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'author_item';
+		return 'byline';
 	}
 
 	/**
@@ -35,11 +41,13 @@ class AuthorItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('author_id, item_id', 'required'),
-			array('author_id, item_id', 'numerical', 'integerOnly'=>true),
+			array('id, author_id, byline', 'required'),
+			array('id, author_id', 'numerical', 'integerOnly'=>true),
+			array('byline', 'length', 'max'=>255),
+			array('title', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('author_id, item_id', 'safe', 'on'=>'search'),
+			array('id, author_id, byline, title', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +59,8 @@ class AuthorItem extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'authorContents' => array(self::HAS_MANY, 'AuthorContent', 'byline_id'),
+			'author' => array(self::BELONGS_TO, 'Author', 'author_id'),
 		);
 	}
 
@@ -60,8 +70,10 @@ class AuthorItem extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id' => 'ID',
 			'author_id' => 'Author',
-			'item_id' => 'Item',
+			'byline' => 'Byline',
+			'title' => 'Title',
 		);
 	}
 
@@ -76,8 +88,10 @@ class AuthorItem extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id',$this->id);
 		$criteria->compare('author_id',$this->author_id);
-		$criteria->compare('item_id',$this->item_id);
+		$criteria->compare('byline',$this->byline,true);
+		$criteria->compare('title',$this->title,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

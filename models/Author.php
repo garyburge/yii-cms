@@ -8,11 +8,19 @@
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
- * @property string $image_file
+ * @property string $phone
+ * @property string $email
+ * @property string $website
  * @property string $short_bio
  * @property string $bio
- * @property string $url
- * @property string $email
+ * @property integer $media_id
+ * @property integer $created
+ * @property integer $updated
+ *
+ * The followings are the available model relations:
+ * @property Media $media
+ * @property AuthorContent[] $authorContents
+ * @property Byline[] $bylines
  */
 class Author extends CActiveRecord
 {
@@ -42,14 +50,16 @@ class Author extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, last_name, bio', 'required'),
+			array('id, first_name, last_name, created', 'required'),
+			array('id, media_id, created, updated', 'numerical', 'integerOnly'=>true),
 			array('first_name, middle_name, last_name', 'length', 'max'=>64),
-			array('image_file, email', 'length', 'max'=>128),
-			array('url', 'length', 'max'=>255),
-			array('short_bio', 'safe'),
+			array('phone', 'length', 'max'=>24),
+			array('email', 'length', 'max'=>128),
+			array('website', 'length', 'max'=>255),
+			array('short_bio, bio', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, first_name, middle_name, last_name, image_file, short_bio, bio, url, email', 'safe', 'on'=>'search'),
+			array('id, first_name, middle_name, last_name, phone, email, website, short_bio, bio, media_id, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +71,9 @@ class Author extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'media' => array(self::BELONGS_TO, 'Media', 'media_id'),
+			'authorContents' => array(self::HAS_MANY, 'AuthorContent', 'author_id'),
+			'bylines' => array(self::HAS_MANY, 'Byline', 'author_id'),
 		);
 	}
 
@@ -74,11 +87,14 @@ class Author extends CActiveRecord
 			'first_name' => 'First Name',
 			'middle_name' => 'Middle Name',
 			'last_name' => 'Last Name',
-			'image_file' => 'Image File',
+			'phone' => 'Phone',
+			'email' => 'Email',
+			'website' => 'Website',
 			'short_bio' => 'Short Bio',
 			'bio' => 'Bio',
-			'url' => 'Url',
-			'email' => 'Email',
+			'media_id' => 'Media',
+			'created' => 'Created',
+			'updated' => 'Updated',
 		);
 	}
 
@@ -97,11 +113,14 @@ class Author extends CActiveRecord
 		$criteria->compare('first_name',$this->first_name,true);
 		$criteria->compare('middle_name',$this->middle_name,true);
 		$criteria->compare('last_name',$this->last_name,true);
-		$criteria->compare('image_file',$this->image_file,true);
+		$criteria->compare('phone',$this->phone,true);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('website',$this->website,true);
 		$criteria->compare('short_bio',$this->short_bio,true);
 		$criteria->compare('bio',$this->bio,true);
-		$criteria->compare('url',$this->url,true);
-		$criteria->compare('email',$this->email,true);
+		$criteria->compare('media_id',$this->media_id);
+		$criteria->compare('created',$this->created);
+		$criteria->compare('updated',$this->updated);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

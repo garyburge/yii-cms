@@ -1,19 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "cms_section".
+ * This is the model class for table "column_widget".
  *
- * The followings are the available columns in table 'cms_section':
- * @property integer $id
- * @property string $name
- * @property string $description
+ * The followings are the available columns in table 'column_widget':
+ * @property integer $column_id
+ * @property integer $widget_id
+ *
+ * The followings are the available model relations:
+ * @property Column $column
+ * @property Widget $widget
  */
-class CmsSection extends CActiveRecord
+class ColumnWidget extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return CmsSection the static model class
+	 * @return ColumnWidget the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -25,7 +28,7 @@ class CmsSection extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cms_section';
+		return 'column_widget';
 	}
 
 	/**
@@ -36,12 +39,11 @@ class CmsSection extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>64),
-			array('description', 'safe'),
+			array('column_id, widget_id', 'required'),
+			array('column_id, widget_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description', 'safe', 'on'=>'search'),
+			array('column_id, widget_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,6 +55,8 @@ class CmsSection extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'column' => array(self::BELONGS_TO, 'Column', 'column_id'),
+			'widget' => array(self::BELONGS_TO, 'Widget', 'widget_id'),
 		);
 	}
 
@@ -62,9 +66,8 @@ class CmsSection extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
+			'column_id' => 'Column',
+			'widget_id' => 'Widget',
 		);
 	}
 
@@ -79,9 +82,8 @@ class CmsSection extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('column_id',$this->column_id);
+		$criteria->compare('widget_id',$this->widget_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
