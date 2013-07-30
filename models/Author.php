@@ -24,6 +24,11 @@
  */
 class Author extends CActiveRecord
 {
+    /**
+     * @var string  full name (last, first middle) of author
+     */
+    public $name = '';
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -59,7 +64,7 @@ class Author extends CActiveRecord
 			array('short_bio, bio', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, first_name, middle_name, last_name, phone, email, url, short_bio, bio, media_id, created, updated', 'safe', 'on'=>'search'),
+			array('id, name, first_name, middle_name, last_name, phone, email, url, short_bio, bio, media_id, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,6 +89,7 @@ class Author extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+            'name' => 'Name',
 			'first_name' => 'First Name',
 			'middle_name' => 'Middle Name',
 			'last_name' => 'Last Name',
@@ -110,6 +116,7 @@ class Author extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('CONCAT_WS(' ', last_name, first_name, middle_name)',$this->first_name,true);
 		$criteria->compare('first_name',$this->first_name,true);
 		$criteria->compare('middle_name',$this->middle_name,true);
 		$criteria->compare('last_name',$this->last_name,true);
