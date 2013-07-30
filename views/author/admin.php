@@ -57,7 +57,7 @@ $('.search-form form').submit(function(){
 //        'updated',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-            'htmlOptions'=>array('style'=>'width:5%;'),
+            'htmlOptions'=>array('style'=>'width:8%; white-space:nowrap;'),
 		),
 	),
 )); ?>
