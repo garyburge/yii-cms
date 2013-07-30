@@ -116,7 +116,7 @@ class Author extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('CONCAT_WS(' ', last_name, first_name, middle_name)',$this->first_name,true);
+		$criteria->compare("CONCAT_WS(' ', last_name, first_name, middle_name)",$this->first_name,true);
 		$criteria->compare('first_name',$this->first_name,true);
 		$criteria->compare('middle_name',$this->middle_name,true);
 		$criteria->compare('last_name',$this->last_name,true);
