@@ -25,10 +25,11 @@ class AuthorController extends Controller
 	 */
 	public function accessRules()
 	{
+        $authRolesAuthors = array('administrator');
 		return array(
             array('allow',
                   'actions'=>array('admin', 'create', 'update', 'delete'),
-                  'roles'=>$this->module->authRolesAuthors,
+                  'roles'=>$authRolesAuthors,
             )
 			array('deny',  // deny all users
 				  'users'=>array('*'),
