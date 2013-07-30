@@ -32,7 +32,7 @@ class m130719_101014_create_content_tables extends CDbMigration
             'website'=>'VARCHAR(255) NULL DEFAULT NULL',
             'short_bio'=>'TEXT NULL DEFAULT NULL',
             'bio'=>'TEXT NULL DEFAULT NULL',
-            'media_id'=>'TEXT NULL DEFAULT NULL',
+            'media_id'=>'INTEGER NULL DEFAULT NULL',
             'created'=>'INTEGER NULL DEFAULT NULL',
             'updated'=>'INTEGER NULL DEFAULT NULL',
         ), $this->sqlOptions);
