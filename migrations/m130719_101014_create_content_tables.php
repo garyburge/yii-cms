@@ -13,7 +13,7 @@ class m130719_101014_create_content_tables extends CDbMigration
             'subtitle'=>'VARCHAR(255) NULL DEFAULT NULL',
             'abstract'=>'text NULL DEFAULT NULL',
             'body'=>'text NOT NULL',
-            'created'=>'INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'created'=>'INTEGER NULL DEFAULT NULL',
             'updated'=>'INTEGER NULL DEFAULT NULL',
             'published'=>'INTEGER NULL DEFAULT NULL',
             'history'=>'text NOT NULL',
@@ -33,7 +33,7 @@ class m130719_101014_create_content_tables extends CDbMigration
             'short_bio'=>'TEXT NULL DEFAULT NULL',
             'bio'=>'TEXT NULL DEFAULT NULL',
             'media_id'=>'TEXT NULL DEFAULT NULL',
-            'created'=>'INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'created'=>'INTEGER NULL DEFAULT NULL',
             'updated'=>'INTEGER NULL DEFAULT NULL',
         ), $this->sqlOptions);
         $this->createIndex('author_name', 'author', 'last_name, first_name', false);
@@ -46,7 +46,7 @@ class m130719_101014_create_content_tables extends CDbMigration
             'author_id'=>'INTEGER NOT NULL',
             'byline'=>'VARCHAR(255) NOT NULL',
             'title'=>'VARCHAR(255) NULL DEFAULT NULL',
-            'created'=>'INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'created'=>'INTEGER NULL DEFAULT NULL',
             'updated'=>'INTEGER NULL DEFAULT NULL',
         ), $this->sqlOptions);
         $this->createIndex('byline_author_id', 'byline', 'author_id', false);
@@ -56,7 +56,7 @@ class m130719_101014_create_content_tables extends CDbMigration
         $this->createTable('tag', array(
             'id'=>'pk',
             'name'=>'VARCHAR(64) NOT NULL',
-            'created'=>'INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'created'=>'INTEGER NULL DEFAULT NULL',
             'updated'=>'INTEGER NULL DEFAULT NULL',
         ), $this->sqlOptions);
         $this->createIndex('tag_name', 'tag', 'name', false);
@@ -73,7 +73,7 @@ class m130719_101014_create_content_tables extends CDbMigration
             'copyright'=>'VARCHAR(255) NULL DEFAULT NULL',
             'height'=>'INTEGER NULL DEFAULT NULL',
             'width'=>'INTEGER NULL DEFAULT NULL',
-            'created'=>'INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'created'=>'INTEGER NULL DEFAULT NULL',
             'updated'=>'INTEGER NULL DEFAULT NULL',
         ), $this->sqlOptions);
         $this->createIndex('media_media_type_id', 'media', 'media_type_id', false);
