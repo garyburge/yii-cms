@@ -26,22 +26,40 @@ class AuthorController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
+            array('allow',
+                  'actions'=>array('admin', 'create', 'update', 'delete'),
+                  'roles'=>$this->module->authRolesAuthors,
+            )
 			array('deny',  // deny all users
-				'users'=>array('*'),
+				  'users'=>array('*'),
 			),
 		);
+	}
+
+	/**
+	 * Lists all models.
+	 */
+	public function actionIndex()
+	{
+		$dataProvider=new CActiveDataProvider('Author');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+	/**
+	 * Manages all models.
+	 */
+	public function actionAdmin()
+	{
+		$model=new Author('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Author']))
+			$model->attributes=$_GET['Author'];
+
+		$this->render('admin',array(
+			'model'=>$model,
+		));
 	}
 
 	/**
@@ -120,32 +138,6 @@ class AuthorController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-	}
-
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Author');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new Author('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Author']))
-			$model->attributes=$_GET['Author'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
 	}
 
 	/**
