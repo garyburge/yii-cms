@@ -47,7 +47,22 @@ class Author extends CActiveRecord
 		return 'author';
 	}
 
-	/**
+    /**
+     * add time stamps before save
+     * @return type
+     */
+    public function behaviors(){
+        return array(
+            'CTimestampBehavior' => array(
+                'class' => 'zii.behaviors.CTimestampBehavior',
+                'timestampExpression'=>'time()',
+                'createAttribute' => 'created',
+                'updateAttribute' => 'updated',
+            )
+        );
+    }
+
+    /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -55,8 +70,9 @@ class Author extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, first_name, last_name, created', 'required'),
-			array('id, media_id, created, updated', 'numerical', 'integerOnly'=>true),
+            array('first_name, middle_name, last_name, phone, email, url, short_bio, bio', 'filter', 'filter'=>'trim'),
+			array('first_name, last_name', 'required'),
+			array('media_id', 'numerical', 'integerOnly'=>true),
 			array('first_name, middle_name, last_name', 'length', 'max'=>64),
 			array('phone', 'length', 'max'=>24),
 			array('email', 'length', 'max'=>128),
