@@ -10,7 +10,7 @@
  * @property string $last_name
  * @property string $phone
  * @property string $email
- * @property string $website
+ * @property string $url
  * @property string $short_bio
  * @property string $bio
  * @property integer $media_id
@@ -55,11 +55,11 @@ class Author extends CActiveRecord
 			array('first_name, middle_name, last_name', 'length', 'max'=>64),
 			array('phone', 'length', 'max'=>24),
 			array('email', 'length', 'max'=>128),
-			array('website', 'length', 'max'=>255),
+			array('url', 'length', 'max'=>255),
 			array('short_bio, bio', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, first_name, middle_name, last_name, phone, email, website, short_bio, bio, media_id, created, updated', 'safe', 'on'=>'search'),
+			array('id, first_name, middle_name, last_name, phone, email, url, short_bio, bio, media_id, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,7 +89,7 @@ class Author extends CActiveRecord
 			'last_name' => 'Last Name',
 			'phone' => 'Phone',
 			'email' => 'Email',
-			'website' => 'Website',
+			'url' => 'Website',
 			'short_bio' => 'Short Bio',
 			'bio' => 'Bio',
 			'media_id' => 'Media',
@@ -115,7 +115,7 @@ class Author extends CActiveRecord
 		$criteria->compare('last_name',$this->last_name,true);
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('website',$this->website,true);
+		$criteria->compare('url',$this->url,true);
 		$criteria->compare('short_bio',$this->short_bio,true);
 		$criteria->compare('bio',$this->bio,true);
 		$criteria->compare('media_id',$this->media_id);

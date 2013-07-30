@@ -29,7 +29,7 @@ class m130719_101014_create_content_tables extends CDbMigration
             'last_name'=>'VARCHAR(64) NOT NULL',
             'phone'=>'VARCHAR(24) NULL DEFAULT NULL',
             'email'=>'VARCHAR(128) NULL DEFAULT NULL',
-            'website'=>'VARCHAR(255) NULL DEFAULT NULL',
+            'url'=>'VARCHAR(255) NULL DEFAULT NULL',
             'short_bio'=>'TEXT NULL DEFAULT NULL',
             'bio'=>'TEXT NULL DEFAULT NULL',
             'media_id'=>'INTEGER NULL DEFAULT NULL',

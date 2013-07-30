@@ -46,13 +46,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'first_name',
 		'middle_name',
 		'last_name',
-		'image_file',
-		'short_bio',
-		/*
-		'bio',
-		'url',
-		'email',
-		*/
+        'phone',
+        'email',
+        'website',
+        'short_bio',
+        'bio',
+		'media_id',
+        'created',
+        'updated',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
