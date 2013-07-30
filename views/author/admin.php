@@ -68,5 +68,5 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.TbButton', array('label'=>'Advanced Search', 'url'=>'#', 'type'=>null, 'size'=>'small', 'htmlOptions'=>array('class'=>'search-button')); ?>
+<?php $this->widget('bootstrap.widgets.TbButton', array('label'=>'Advanced Search', 'url'=>'#', 'type'=>null, 'size'=>'small', 'htmlOptions'=>array('class'=>'search-button'))); ?>
 <?php $this->widget('bootstrap.widgets.TbButton', array('label'=>'Create Author', 'url'=>array('create'), 'type'=>'primary', 'size'=>'small')); ?>
