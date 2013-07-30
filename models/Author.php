@@ -75,6 +75,7 @@ class Author extends CActiveRecord
 			array('media_id', 'numerical', 'integerOnly'=>true),
 			array('first_name, middle_name, last_name', 'length', 'max'=>64),
 			array('phone', 'length', 'max'=>24),
+			array('phone', 'vendor.garyburge.PcSimplePhoneValidator', 'allowEmpty'=>true),
 			array('email', 'length', 'max'=>128),
 			array('url', 'length', 'max'=>255),
 			array('short_bio, bio', 'safe'),

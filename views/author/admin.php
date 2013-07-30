@@ -40,7 +40,6 @@ $('.search-form form').submit(function(){
 //        'last_name',
         array(
             'name'=>'phone',
-            'type'=>'phone',
             'htmlOptions'=>array('style'=>'width:10%;'),
         ),
         array(
