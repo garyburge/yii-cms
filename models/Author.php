@@ -149,4 +149,22 @@ class Author extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function getName($data) {
+        $name = '';
+
+        if (!empty($data->last_name) && !empty($data->first_name) && !empty($data->middle_name)) {
+            $name .= $data->last_name.', '.$data->first_name.' '.$data->middle_name;
+        } else if (!empty($data->last_name) && !empty($data->first_name)) {
+            $name .= $data->last_name.', '.$data->first_name;
+        } else if (!empty($data->last_name)) {
+            $name .= $data->last_name;
+        } else if (!empty($data->first_name)) {
+            $name .= $data->first_name;
+        } else if (!empty($data->middle_name)) {
+            $name .= $data->first_name;
+        }
+
+        return $name;
+    }
 }
