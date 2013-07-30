@@ -32,7 +32,7 @@ $('.search-form form').submit(function(){
         ),
         array(
             'name'=>'name',
-            'value'=>'$model->getName($data)',
+            'value'=>'$data->getName()',
             'htmlOptions'=>array('style'=>'width:20%;'),
         ),
 //        'first_name',
