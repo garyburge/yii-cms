@@ -3,12 +3,6 @@
 class AuthorController extends Controller
 {
 	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/column2';
-
-	/**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -25,12 +19,10 @@ class AuthorController extends Controller
 	 */
 	public function accessRules()
 	{
-        $authRolesAuthors = array('administrator');
 		return array(
             array('allow',
                   'actions'=>array('admin', 'create', 'update', 'delete'),
-                  //'roles'=>$this->module->authRolesAuthors,
-                  'roles'=>$authRolesAuthors,
+                  'roles'=>$this->module->authRolesAuthors,
             ),
 			array('deny',  // deny all users
 				  'users'=>array('*'),
