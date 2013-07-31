@@ -5,7 +5,6 @@
 ));
 $js = <<<EOT
 function onUploadSuccess(file, e) {
-    alert("Success");
     var data = jQuery.parseJSON(e);
     if (data.bError) {
         alert("Error: "+data.sMessage);
