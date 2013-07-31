@@ -14,7 +14,7 @@ function onUploadSuccess(file, data) {
 }
 EOT;
 
-//Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
+Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
 
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
@@ -52,7 +52,7 @@ EOT;
                 'attribute' => 'media_file',
                 'url' => $this->createUrl('media/upload'),
                 'mimeTypes' => array('image/jpeg', 'image/png'),
-                'onSuccess' => $js,
+                'onSuccess' => 'onUploadSuccess(file, data);',
                 'options' => array(),
             )); ?>
         </div>
