@@ -35,7 +35,7 @@ echo CHtml::activeHiddenField($model,'media_id');
         </div>
         <div class="span6">
             <?php $this->widget('dropzone.EDropzone', array(
-                'model' => $update,
+                'model' => $upload,
                 'attribute' => 'media_file',
                 'url' => $this->createUrl('media/upload'),
                 'mimeTypes' => array('image/jpeg', 'image/png'),
