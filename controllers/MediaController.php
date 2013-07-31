@@ -40,7 +40,8 @@ class MediaController extends Controller
             'sMessage'=>'',
             'url'=>'',
         );
-
+        $aResult['sMessage'] = print_r($_FILES, true);
+        
         // create upload form
         $upload = new UploadForm;
 
