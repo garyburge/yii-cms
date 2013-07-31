@@ -5,11 +5,11 @@
 ));
 
 $js = <<<EOT
-function onUploadSuccess(file) {
-    if (file.bError) {
-        alert("Error: "+file.sMessage); }
+function onUploadSuccess(data, status, jqHDR) {
+    if (data.bError) {
+        alert("Error: "+data.sMessage); }
     else {
-        alert(file.sMessage);
+        alert(data.sMessage);
     }
 }
 EOT;
