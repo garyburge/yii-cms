@@ -5,7 +5,7 @@
 ));
 
 $js = <<<EOT
-if (data.bError) { alert("Error: "+data.sMessage); } else { alert(data.sMessage); }
+if (file.bError) { alert("Error: "+file.sMessage); } else { alert(file.sMessage); }
 EOT;
 
 //Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
