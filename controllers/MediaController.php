@@ -73,7 +73,7 @@ class MediaController extends Controller
                 $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
                 $upload->upload->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
                 $aResult['url'] = $this->module->baseMediaUrl.'/'.$saveAsFileName;
-            }
+//            }
         }
 
         echo CJSON::encode($aResult);
