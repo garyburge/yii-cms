@@ -52,7 +52,7 @@ Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS
                 'attribute' => 'media_file',
                 'url' => $this->createUrl('media/upload'),
                 'mimeTypes' => array('image/jpeg', 'image/png'),
-                'onSuccess' => 'onUploadSuccess;',
+                'onSuccess' => 'js: onUploadSuccess(xdr, data);',
                 'options' => array(),
             )); ?>
         </div>
