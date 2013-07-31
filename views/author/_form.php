@@ -5,13 +5,13 @@
 ));
 
 $js = <<<EOT
-    function onUploadSuccess(xHdr, data) {
-        if (data.bError) {
-            alert("Error: "+data.sMessage);
-        else {
-            alert(data.sMessage);
-        }
+function onUploadSuccess(data) {
+    if (data.bError) {
+        alert("Error: "+data.sMessage);
+    else {
+        alert(data.sMessage);
     }
+}
 EOT;
 
 Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
@@ -52,7 +52,7 @@ Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS
                 'attribute' => 'media_file',
                 'url' => $this->createUrl('media/upload'),
                 'mimeTypes' => array('image/jpeg', 'image/png'),
-                'onSuccess' => 'js: onUploadSuccess(xdr, data);',
+                'onSuccess' => 'onUploadSuccess(file);',
                 'options' => array(),
             )); ?>
         </div>
