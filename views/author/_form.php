@@ -8,7 +8,7 @@ $js = <<<EOT
 function onUploadSuccess(data) {
     if (data.bError) {
         alert("Error: "+data.sMessage);
-    else {
+    } else {
         alert(data.sMessage);
     }
 }
