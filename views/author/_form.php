@@ -5,10 +5,12 @@
 ));
 
 $js = <<<EOT
-if (file.bError) {
-    alert("Error: "+file.sMessage); }
-else {
-    alert(file.sMessage);
+function onUploadSuccess(file) {
+    if (file.bError) {
+        alert("Error: "+file.sMessage); }
+    else {
+        alert(file.sMessage);
+    }
 }
 EOT;
 
