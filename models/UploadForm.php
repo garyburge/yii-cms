@@ -10,14 +10,14 @@ class UploadForm extends CFormModel
     public $type;
     public $size;
     public $tmp_name;
-    public $size;
     public $error;
     public $upload;
+    public $media_id;
 
     public function rules()
     {
         return array(
-            array('image', 'file', 'types'=>'jpg, gif, png'),
+            array('file', 'file', 'types'=>'jpg, gif, png'),
         );
     }
 }
