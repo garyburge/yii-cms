@@ -53,7 +53,7 @@ class MediaController extends Controller
             // copy to model
             $upload->attributes = $_FILES['UploadForm'];
             $aResult['attributes'] = print_r($upload->attributes, true);
-            $upload->upload = CUploadedFile::getInstanceByName('UploadForm');
+            $upload->upload = CUploadedFile::getInstanceByName('UploadForm'); // comment
             $aResult['upload'] = print_r($upload->upload, true);
             if ($upload->validate()) {
                 $aParts = pathinfo($upload->image->name);
