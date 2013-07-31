@@ -4,8 +4,8 @@
 	'enableAjaxValidation'=>false,
 ));
 $js = <<<EOT
-function onUploadSuccess(file, responseText, e) {
-    alert(responseText);
+function onUploadSuccess(file, e) {
+    alert("Success");
 }
 EOT;
 Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
