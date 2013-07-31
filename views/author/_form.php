@@ -8,7 +8,7 @@ function onUploadSuccess(file, responseText, e) {
     alert(responseText);
 }
 EOT;
-Yii::app()->clientScript->registerScriptFile('media-upload', $js, CClientScript::POS_READY);
+Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
