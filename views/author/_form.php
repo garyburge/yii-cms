@@ -14,7 +14,7 @@ $js = <<<EOT
     }
 EOT;
 
-Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READ);
+Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
 
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
