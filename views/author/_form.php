@@ -9,7 +9,10 @@ function onUploadSuccess(file, e) {
     if (data.bError) {
         alert("Error: "+data.sMessage);
     } else {
-        alert("Success: "+data.sMessage);
+        alert("sMessage: "+data.sMessage);
+        alert("_FILES: "+data._FILES);
+        alert("attributes: "+data.attributes);
+        alert("upload: "+data.upload);
     }
 }
 EOT;
