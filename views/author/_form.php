@@ -3,19 +3,12 @@
     'focus'=>array($model, 'first_name'),
 	'enableAjaxValidation'=>false,
 ));
-
 $js = <<<EOT
-function onUploadSuccess(file, data) {
-    if (data.bError) {
-        alert("Error: "+data.sMessage); }
-    else {
-        alert(data.sMessage);
-    }
+function onUploadSuccess(file, responseText, e) {
+    alert(responseText);
 }
 EOT;
-
-Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
-
+Yii::app()->clientScript->registerScriptFile('media-upload', $js, CClientScript::POS_READY);
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
@@ -52,7 +45,7 @@ Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS
                 'attribute' => 'media_file',
                 'url' => $this->createUrl('media/upload'),
                 'mimeTypes' => array('image/jpeg', 'image/png'),
-                'onSuccess' => 'onUploadSuccess(file, data);',
+                'onSuccess' => 'onUploadSuccess(file, responseText, e);',
                 'options' => array(),
             )); ?>
         </div>
