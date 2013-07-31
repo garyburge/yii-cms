@@ -49,7 +49,7 @@ class MediaController extends Controller
         if (isset($_FILES['UploadForm'])) {
             // copy to model
             $upload->attributes = $_FILES['UploadForm'];
-            $upload->upload = CUploadedFile::getInstance($upload, 'file');
+            $upload->upload = CUploadedFile::getInstance($upload, 'name');
             $aResult['sMessage'] .= print_r($upload->attributes, true);
             if ($upload->validate()) {
                 $aParts = pathinfo($upload->image->name);
