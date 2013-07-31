@@ -40,7 +40,7 @@ class MediaController extends Controller
             'sMessage'=>'',
             'url'=>'',
         );
-        $aResult['sMessage'] = print_r($_FILES, true);
+        //$aResult['sMessage'] = print_r($_FILES, true);
 
         // create upload form
         $upload = new UploadForm;
@@ -49,9 +49,9 @@ class MediaController extends Controller
         if (isset($_FILES['UploadForm'])) {
             // copy to model
             $upload->attributes = $_FILES['UploadForm'];
-            $aResult['sMessage'] .= print_r($upload->attributes, true);
+            //$aResult['sMessage'] .= print_r($upload->attributes, true);
             $upload->upload = CUploadedFile::getInstance($upload, 'file');
-            $aResult['sMessage'] .= print_r($upload->attributes, true);
+            $aResult['sMessage'] .= print_r($upload->upload, true);
 //            if ($upload->validate()) {
 //                $aParts = pathinfo($upload->image->name);
 //                $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
