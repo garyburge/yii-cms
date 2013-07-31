@@ -6,6 +6,11 @@
 $js = <<<EOT
 function onUploadSuccess(file, e) {
     alert("Success");
+    var data = jQuery.parseJSON(e);
+    if (data.bError) {
+        alert("Error: "+data.sMessage);
+    } else {
+    }
 }
 EOT;
 Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
