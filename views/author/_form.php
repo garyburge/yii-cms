@@ -3,8 +3,21 @@
     'focus'=>array($model, 'first_name'),
 	'enableAjaxValidation'=>false,
 ));
-echo CHtml::activeHiddenField($model,'media_id');
+
+$js = <<<EOT
+    function onUploadSuccess(xHdr, data) {
+        if (data.bError) {
+            alert("Error: "+data.sMessage);
+        else {
+            alert(data.sMessage);
+        }
+    }
+EOT;
+
+Yii::app()->createScript->registerScript('media-upload', $js, CClientScript::POS_READ);
+
 ?>
+    <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
 	<p class="help-block muted">Fields with <span class="required">*</span> are required.</p>
 	<?php echo $form->errorSummary($model); ?>
@@ -39,7 +52,7 @@ echo CHtml::activeHiddenField($model,'media_id');
                 'attribute' => 'media_file',
                 'url' => $this->createUrl('media/upload'),
                 'mimeTypes' => array('image/jpeg', 'image/png'),
-                'onSuccess' => 'someJsFunction();',
+                'onSuccess' => 'onUploadSuccess;',
                 'options' => array(),
             )); ?>
         </div>

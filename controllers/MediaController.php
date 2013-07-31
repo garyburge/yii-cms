@@ -35,6 +35,18 @@ class MediaController extends Controller
 	 */
 	public function actionUpload()
 	{
+        $aResult = array(
+            'bError'=>false,
+            'sMessage'=>'',
+        );
+
+        $aResult['sMessage'] = print_r($_POST, true);
+
+        // create upload form
+        $upload = new UploadForm;
+
+        echo CJSON::encode($aResult);
+        Yii::app()->end();
 	}
 
 
