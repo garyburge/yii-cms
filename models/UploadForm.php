@@ -6,9 +6,13 @@
  */
 class UploadForm extends CFormModel
 {
-    public $image;
-    public $media_id;
-    public $media_file;
+    public $name;
+    public $type;
+    public $size;
+    public $tmp_name;
+    public $size;
+    public $error;
+    public $upload;
 
     public function rules()
     {

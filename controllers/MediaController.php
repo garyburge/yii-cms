@@ -47,14 +47,17 @@ class MediaController extends Controller
 
         // get uploaded file, if available
         if (isset($_FILES['UploadForm'])) {
-            $upload->image = CUploadedFile::getInstanceByName('UploadForm');
+            // copy to model
+            $upload->attributes = $_FILE['UploadForm'];
             $aResult['sMessage'] .= print_r($upload->attributes, true);
-            if ($upload->validate()) {
-                $aParts = pathinfo($upload->image->name);
-                $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
-                $upload->image->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
-                $aResult['url'] = $this->module->baseMediaUrl.'/'.$saveAsFileName;
-            }
+            $upload->upload = CUploadedFile::getInstance($upload, 'file');
+            $aResult['sMessage'] .= print_r($upload->attributes, true);
+//            if ($upload->validate()) {
+//                $aParts = pathinfo($upload->image->name);
+//                $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
+//                $upload->image->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
+//                $aResult['url'] = $this->module->baseMediaUrl.'/'.$saveAsFileName;
+//            }
         }
 
         echo CJSON::encode($aResult);

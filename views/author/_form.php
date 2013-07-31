@@ -10,6 +10,7 @@ function onUploadSuccess(file, e) {
     if (data.bError) {
         alert("Error: "+data.sMessage);
     } else {
+        alert("Success: "+data.sMessage);
     }
 }
 EOT;
@@ -47,7 +48,7 @@ Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS
         <div class="span6">
             <?php $this->widget('dropzone.EDropzone', array(
                 'model' => $upload,
-                'attribute' => 'media_file',
+                'attribute' => 'file',
                 'url' => $this->createUrl('media/upload'),
                 'mimeTypes' => array('image/jpeg', 'image/png'),
                 'onSuccess' => 'onUploadSuccess(file, e);',
