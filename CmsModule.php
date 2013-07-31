@@ -12,16 +12,20 @@ class CmsModule extends CWebModule
      */
     public $authRolesMedia = array('administrator');
 
+    public $imageThumbsDir = 'thumbs';
+    public $baseMediaPath = '/../../../assets/media';
+    public $baseMediaUrl = 'assets/media';
+
 	public function init()
 	{
-		// this method is called when the module is being created
-		// you may place code here to customize the module or the application
-
 		// import the module-level models and components
 		$this->setImport(array(
 			'cms.models.*',
 			'cms.components.*',
 		));
+
+        // set paths
+        $this->baseMediaPath = dirname(__FILE__).$this->baseMediaPath;
 	}
 
 }

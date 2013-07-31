@@ -38,14 +38,23 @@ class MediaController extends Controller
         $aResult = array(
             'bError'=>false,
             'sMessage'=>'',
+            'url'=>'',
         );
 
-        $aResult['sMessage'] = "_POST=".print_r($_POST, true)."\n".
-                               "_GET=".print_r($_GET, true)."\n".
-                               "_FILES=".print_r($_FILES, true)."\n";
-        
         // create upload form
         $upload = new UploadForm;
+
+        // get uploaded file, if available
+        if (isset($_FILES['UploadForm'])) {
+            $upload->attributes = $_FILES['UploadForm'];
+            $upload->image = CUploadedFile::getInstance($upload, 'image');
+            if ($upload->validate()) {
+                $aParts = pathinfo($upload->image->name);
+                $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
+                $upload->image->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
+                $aResult['url'] = $this->module->baseMediaUrl.'/'.$saveAsFileName;
+            }
+        }
 
         echo CJSON::encode($aResult);
         Yii::app()->end();
