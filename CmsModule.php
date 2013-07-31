@@ -7,6 +7,11 @@ class CmsModule extends CWebModule
      */
     public $authRolesAuthors = array('administrator');
 
+    /**
+     * @var array role names authorized to upload, admin, create, update and delete Media
+     */
+    public $authRolesMedia = array('administrator');
+
 	public function init()
 	{
 		// this method is called when the module is being created
