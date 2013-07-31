@@ -63,7 +63,12 @@ class MediaController extends Controller
                                                 $_FILES['UploadForm']['size']['file'],
                                                 $_FILES['UploadForm']['error']['file']);
             $aResult['upload'] = print_r($upload->upload, true);
-            if ($upload->validate()) {
+            if (!$upload->validate()) {
+                foreach ($upload->errors as $error) {
+                    $aResult['sMessage'] .= '\n'.$error;
+                }
+                $aResult['bError'] = true;
+            } else{
                 $aParts = pathinfo($upload->image->name);
                 $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
                 $upload->image->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
