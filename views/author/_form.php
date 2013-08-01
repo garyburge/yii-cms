@@ -39,14 +39,7 @@ Yii::app()->registerScriptFile('/assets/js/UploadForm.js', CClientScript::POS_EN
             </ul>
         </div>
         <div class="span6">
-            <?php $this->widget('dropzone.EDropzone', array(
-                'model' => $upload,
-                'attribute' => 'file',
-                'url' => $this->createUrl('media/upload'),
-                'mimeTypes' => array('image/jpeg', 'image/png'),
-                'onSuccess' => 'onUploadSuccess(file, e);',
-                'options' => array(),
-            )); ?>
+            <div id="upload-form"></div>
         </div>
     </div><!-- .row -->
 
