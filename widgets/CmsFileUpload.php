@@ -2,19 +2,37 @@
 
 class CmsFileUploadWidget extends CWidget
 {
-    protected $form = <<<EOT
-<form id="upload-form" class="dropzone" action="<?php echo $this->createUrl('/media/upload'); ?>" method="post">
-    <input type="file" name="file">
-</form>
-EOT;
+    /**
+     * If true, assets are copied each time widget is run; default is false.
+     * @var boolean
+     */
+    public $forceCopyAssets = false;
+
+    protected $_assetsUrl = null;
 
     public function init()
     {
         // this method is called by CController::beginWidget()
+        parent::init();
+
+        // publish assets
+		if ($this->_assetsUrl === null) {
+			$assetsPath = Yii::getPathOfAlias('cms.assets');
+			$this->_assetsUrl = Yii::app()->assetManager->publish($assetsPath, false, -1, $this->forceCopyAssets);
+        }
+
+        // register assets
+        Yii::app()->clientScript->registerCssFile($assetsUrl.'/css/dropzone.css');
+        Yii::app()->clientScript->registerScriptFile($assetsUrl.'/dropzone.min.js', CClientScript::POS_END);
+        Yii::app()->clientScript->registerScriptFile($assetsUrl.'/file-upload.js', CClientScript::POS_END);
+
+        // output form
+        $this->render('file-upload-form');
     }
 
     public function run()
     {
         // this method is called by CController::endWidget()
     }
+
 }

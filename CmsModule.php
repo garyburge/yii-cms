@@ -3,6 +3,12 @@
 class CmsModule extends CWebModule
 {
     /**
+     *
+     * @var boolean true if assets are to be copied on each invocation
+     */
+    public $forceCopyAssets = false;
+    
+    /**
      * @var array role names authorized to admin, create, update and delete Authors
      */
     public $authRolesAuthors = array('administrator');
