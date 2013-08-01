@@ -47,13 +47,15 @@ class MediaController extends Controller
         );
         $aResult['_FILES'] = print_r($_FILES, true);
 
+        // create upload form
+        $upload = new UploadForm('upload');;
+
         // get uploaded file, if available
         if (isset($_FILES['file'])) {
-            // create upload form
-            $upload = new UploadForm('upload');;
             // copy to model attributes
-            $upload->file = $_FILES['file'];
-            $upload->upload = CUploadedFile::getInstance($upload, 'file');
+            $upload->attributes = $_FILES['file'];
+            $upload->file = CUploadedFile::getInstance($upload, 'file');
+            $upload->save();
             $aResult['attributes'] = print_r($upload->attributes, true);
 
 //            // copy to model
