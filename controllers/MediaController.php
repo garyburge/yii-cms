@@ -52,32 +52,26 @@ class MediaController extends Controller
 
         // get uploaded file, if available
         if (isset($_FILES['file'])) {
-//            // copy to model
-//            $upload->name = $_FILES['file']['name']['file'];
-//            $upload->tmp_name = $_FILES['file']['tmp_name']['file'];
-//            $upload->type = $_FILES['file']['type']['file'];
-//            $upload->size = $_FILES['file']['size']['file'];
-//            $upload->error = $_FILES['file']['error']['file'];
-//            $aResult['attributes'] = print_r($upload->attributes, true);
-//            $upload->upload = new CUploadedFile($_FILES['file']['name']['file'],
-//                                                $_FILES['file']['tmp_name']['file'],
-//                                                $_FILES['file']['type']['file'],
-//                                                $_FILES['file']['size']['file'],
-//                                                $_FILES['file']['error']['file']);
-//            $aResult['upload'] = print_r($upload->upload, true);
             // copy to model
-            $upload->attributes = $_FILES['file'];
+            $upload->name = $_FILES['file']['name'];
+            $upload->tmp_name = $_FILES['file']['tmp_name'];
+            $upload->type = $_FILES['file']['type'];
+            $upload->size = $_FILES['file']['size'];
+            $upload->error = $_FILES['file']['error'];
             $aResult['attributes'] = print_r($upload->attributes, true);
+            // create upload file object
             $upload->upload = new CUploadedFile($_FILES['file']['name'],
                                                 $_FILES['file']['tmp_name'],
                                                 $_FILES['file']['type'],
                                                 $_FILES['file']['size'],
                                                 $_FILES['file']['error']);
             $aResult['upload'] = print_r($upload->upload, true);
+            // validate
             if (!$upload->validate()) {
                 $aResult['aErrors'] = $upload->errors;
                 $aResult['bError'] = true;
             } else{
+                // copy original file
                 $aParts = pathinfo($_FILES['file']['name']);
                 $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
                 $upload->upload->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
