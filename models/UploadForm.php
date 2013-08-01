@@ -8,9 +8,9 @@ class UploadForm extends CFormModel
 {
     public $name;
     public $type;
-    public $size;
     public $tmp_name;
     public $error;
+    public $size;
     public $upload;
     public $media_id;
 
