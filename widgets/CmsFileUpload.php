@@ -1,6 +1,6 @@
 <?php
 
-class CmsFileUploadWidget extends CWidget
+class CmsFileUpload extends CWidget
 {
     /**
      * If true, assets are copied each time widget is run; default is false.
@@ -26,15 +26,13 @@ class CmsFileUploadWidget extends CWidget
         Yii::app()->clientScript->registerScriptFile($assetsUrl.'/dropzone.min.js', CClientScript::POS_END);
         Yii::app()->clientScript->registerScriptFile($assetsUrl.'/file-upload.js', CClientScript::POS_END);
 
-        // output form
-        $this->render('file-upload-form');
-
         Yii::trace(__METHOD__." (".__LINE__.": CmsFileUploadWidget initialized", 'application');
     }
 
     public function run()
     {
-        // this method is called by CController::endWidget()
+        // output form
+        $this->render('file-upload-form');
     }
 
 }
