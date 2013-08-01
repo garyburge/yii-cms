@@ -18,6 +18,7 @@ class UploadForm extends CFormModel
     {
         return array(
             array('name', 'file', 'types'=>'jpg, gif, png'),
+            array('name, type, tmp_name, error, size', 'safe')
         );
     }
 }
