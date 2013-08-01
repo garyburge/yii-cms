@@ -46,3 +46,26 @@
         'forceCopyAssets'=>true,
     )); ?>
 </div>
+
+<script>
+    // set some dropzone options
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file",
+        maxFilesize: 2,
+        acceptedFiles: '.jpg, .png, .gif',
+        init: function() {
+            this.on('success', function(file, data) {
+                if (data.bError) {
+                    alert("An error occurred during the file upload:\n\n"+data.sMessage);
+                } else {
+                    if (data.url) {
+                        // set image tag src attribute
+                        $('#media-id-image').attr('src', data.url);
+                        // set media id hidden tag
+                        $('#media_id').val(datal.media_id);
+                    }
+                }
+            })
+        }
+    };
+</script>
