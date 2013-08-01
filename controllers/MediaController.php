@@ -38,6 +38,7 @@ class MediaController extends Controller
         $aResult = array(
             'bError'=>false,
             'sMessage'=>'',
+            'aErrors'=>false,
             '_FILES'=>'',
             'attributes'=>'',
             'upload'=>'',
@@ -74,8 +75,7 @@ class MediaController extends Controller
                                                 $_FILES['file']['error']);
             $aResult['upload'] = print_r($upload->upload, true);
             if (!$upload->validate()) {
-                foreach ($upload->errors as $error) {
-                    $aResult['sMessage'] .= '\n'.$error;
+                $aResult['aErrors'] = $upload->errors;
                 }
                 $aResult['bError'] = true;
             } else{
