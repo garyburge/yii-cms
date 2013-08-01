@@ -3,11 +3,6 @@
     'focus'=>array($model, 'first_name'),
 	'enableAjaxValidation'=>false,
 ));
-// load dropzone files
-Yii::app()->clientScript->registerCssFile('/assets/dropzone/css/dropzone.css');
-Yii::app()->clientScript->registerScriptFile('/assets/dropzone/dropzone.min.js', CClientScript::POS_END);
-// load UploadForm javascript
-Yii::app()->clientScript->registerScriptFile('/assets/js/UploadForm.js', CClientScript::POS_END);
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
@@ -23,25 +18,18 @@ Yii::app()->clientScript->registerScriptFile('/assets/js/UploadForm.js', CClient
 	<?php echo $form->textAreaRow($model,'short_bio',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 	<?php echo $form->textAreaRow($model,'bio',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
-    <div class="row">
-        <div class="span6">
-            <ul class="thumbnails">
-                <li class="span4">
-                    <div class="thumbnail">
-                    <?php if ($model->id && $model->media): ?>
-                        <img src="<?php echo $model->media->file; ?>" alt="image of author" title="<?php echo $model->media->file.' ('.$model->media->width.'x'.$model->media->height.')'; ?>">
-                        <div><strong><?php echo $model->media->title; ?></strong> - <?php echo $model->media->caption; ?></div>
-                    <?php else: ?>
-                        <div style="width:150px; height:150px; border:1px solid #eee;"></div>
-                    <?php endif; ?>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="span6">
-            <div id="upload-form"></div>
-        </div>
-    </div><!-- .row -->
+    <ul class="thumbnails">
+        <li class="span4">
+            <div class="thumbnail">
+            <?php if ($model->id && $model->media): ?>
+                <img src="<?php echo $model->media->file; ?>" alt="image of author" title="<?php echo $model->media->file.' ('.$model->media->width.'x'.$model->media->height.')'; ?>">
+                <div><strong><?php echo $model->media->title; ?></strong> - <?php echo $model->media->caption; ?></div>
+            <?php else: ?>
+                <div style="width:150px; height:150px; border:1px solid #eee;"></div>
+            <?php endif; ?>
+            </div>
+        </li>
+    </ul>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
@@ -52,3 +40,8 @@ Yii::app()->clientScript->registerScriptFile('/assets/js/UploadForm.js', CClient
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<div id="upload-dialog">
+    <?php $this->widget('cms.widgets.CmsFileUpload', array(
+    )); ?>
+</div>
