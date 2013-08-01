@@ -76,7 +76,6 @@ class MediaController extends Controller
             $aResult['upload'] = print_r($upload->upload, true);
             if (!$upload->validate()) {
                 $aResult['aErrors'] = $upload->errors;
-                }
                 $aResult['bError'] = true;
             } else{
                 $aParts = pathinfo($upload->name);
