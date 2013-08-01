@@ -7,7 +7,7 @@
 Yii::app()->clientScript->registerCssFile('/assets/dropzone/css/dropzone.css');
 Yii::app()->clientScript->registerScriptFile('/assets/dropzone/dropzone.min.js', CClientScript::POS_END);
 // load UploadForm javascript
-Yii::app()->registerScriptFile('/assets/js/UploadForm.js', CClientScript::POS_END);
+Yii::app()->clientScript->registerScriptFile('/assets/js/UploadForm.js', CClientScript::POS_END);
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
