@@ -2,26 +2,26 @@
 
 $(document).ready(function() {
 
-//    // set some dropzone options
-//    Dropzone.options.myAwesomeDropzone = {
-//        paramName: "file",
-//        maxFilesize: 2,
-//        acceptedFiles: '.jpg, .png, .gif',
-//        init: function() {
-//            this.on('success', function(file, data) {
-//                if (data.bError) {
-//                    alert("An error occurred during the file upload:\n\n"+data.sMessage);
-//                } else {
-//                    if (data.url) {
-//                        // set image tag src attribute
-//                        $('#media-id-image').attr('src', data.url);
-//                        // set media id hidden tag
-//                        $('#media_id').val(datal.media_id);
-//                    }
-//                }
-//            })
-//        }
-//    };
+    // set some dropzone options
+    Dropzone.options.FileUploadForm = {
+        paramName: "file",
+        maxFilesize: 2,
+        acceptedFiles: '.jpg, .png, .gif',
+        init: function() {
+            this.on('success', function(file, data) {
+                if (data.bError) {
+                    alert("An error occurred during the file upload:\n\n"+data.sMessage);
+                } else {
+                    if (data.url) {
+                        // set image tag src attribute
+                        $('#media-id-image').attr('src', data.url);
+                        // set media id hidden tag
+                        $('#media_id').val(datal.media_id);
+                    }
+                }
+            })
+        }
+    };
 
     // initialize file upload dialog
     $("#file-upload-dialog").dialog({
@@ -42,7 +42,9 @@ $(document).ready(function() {
     // bind to file upload form submission
     $('#file-upload-form').on('submit', function(e) {
         e.stopPropagation();
-
         return false;
     })
+
+    // get dropzone to attach itself to the form
+    $('#file-upload-form').addClass('dropzone');
 });
