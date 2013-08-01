@@ -22,7 +22,7 @@
         <li class="span4">
             <div class="thumbnail">
             <?php if ($model->id && $model->media): ?>
-                <img class="media-id-image" src="<?php echo $model->media->file; ?>" alt="image of author" title="<?php echo $model->media->file.' ('.$model->media->width.'x'.$model->media->height.')'; ?>">
+                <img class="media-id-image" id="media-id-image" src="<?php echo $model->media->file; ?>" alt="image of author" title="<?php echo $model->media->file.' ('.$model->media->width.'x'.$model->media->height.')'; ?>">
                 <div><strong><?php echo $model->media->title; ?></strong> - <?php echo $model->media->caption; ?></div>
             <?php else: ?>
                 <div class="media-id-image" style="width:150px; height:150px; border:1px solid #eee;" title="Click to upload an image file"></div>

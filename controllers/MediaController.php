@@ -42,6 +42,7 @@ class MediaController extends Controller
             'attributes'=>'',
             'upload'=>'',
             'url'=>'',
+            'media_id'=>0
         );
         $aResult['_FILES'] = print_r($_FILES, true);
 
