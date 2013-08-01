@@ -57,34 +57,17 @@ class MediaController extends Controller
             $file = CUploadedFile::getInstance($upload, 'file');
             $aResult['attributes'] .= print_r($upload->attributes, true);
             $aResult['attributes'] .= print_r($file, true);
-//            $upload->file = CUploadedFile::getInstance($upload, 'file');
-//            $upload->save();
-
-//            // copy to model
-//            $upload->name = $_FILES['file']['name'];
-//            $upload->tmp_name = $_FILES['file']['tmp_name'];
-//            $upload->type = $_FILES['file']['type'];
-//            $upload->size = $_FILES['file']['size'];
-//            $upload->error = $_FILES['file']['error'];
-//            $aResult['attributes'] = print_r($upload->attributes, true);
-//            // validate
-//            if (!$upload->validate()) {
-//                $aResult['aErrors'] = $upload->errors;
-//                $aResult['bError'] = true;
-//            } else{
-//                // create upload file object
-//                $upload->upload = new CUploadedFile($_FILES['file']['name'],
-//                                                    $_FILES['file']['tmp_name'],
-//                                                    $_FILES['file']['type'],
-//                                                    $_FILES['file']['size'],
-//                                                    $_FILES['file']['error']);
-//                $aResult['upload'] = print_r($upload->upload, true);
-//                // copy original file
-//                $aParts = pathinfo($_FILES['file']['name']);
-//                $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
-//                $upload->upload->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
-//                $aResult['url'] = $this->module->baseMediaUrl.'/'.$saveAsFileName;
-//            }
+            // validate
+            if (!$upload->validate()) {
+                $aResult['aErrors'] = $upload->errors;
+                $aResult['bError'] = true;
+            } else{
+                // copy original file
+                $aParts = pathinfo($_FILES['file']['name']);
+                $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
+                $upload->upload->saveAs($this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName);
+                $aResult['url'] = $this->module->baseMediaUrl.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName;
+            }
         }
 
         echo CJSON::encode($aResult);
