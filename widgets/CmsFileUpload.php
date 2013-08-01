@@ -28,6 +28,8 @@ class CmsFileUploadWidget extends CWidget
 
         // output form
         $this->render('file-upload-form');
+
+        Yii::trace(__METHOD__." (".__LINE__.": CmsFileUploadWidget initialized", 'application');
     }
 
     public function run()
