@@ -41,7 +41,7 @@
 
 <?php $this->endWidget(); ?>
 
-<div id="upload-dialog">
+<div id="file-upload-dialog" title="Upload File">
     <?php $this->widget('cms.widgets.CmsFileUpload', array(
     )); ?>
 </div>
