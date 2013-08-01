@@ -4,7 +4,7 @@
 	'enableAjaxValidation'=>false,
 ));
 // load UploadForm javascript
-Yii::app()->clientScriptFile('/assets/js/UploadForm.js', CClinetScript::POS_READY);
+Yii::app()->clientScriptFile('/assets/js/UploadForm.js', CClientScript::POS_READY);
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
