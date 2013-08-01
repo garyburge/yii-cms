@@ -7,11 +7,11 @@
 class UploadForm extends CFormModel
 {
     public $file;
-//    public $name;
-//    public $type;
-//    public $tmp_name;
-//    public $error;
-//    public $size;
+    public $name;
+    public $type;
+    public $tmp_name;
+    public $error;
+    public $size;
 //    public $upload;
 //    public $media_id;
 
@@ -19,7 +19,7 @@ class UploadForm extends CFormModel
     {
         return array(
             array('file', 'file', 'types'=>'jpg, png, gif'),
-            array('file', 'safe', 'on'=>'upload')
+            array('file, name, type, tmp_name, error, size', 'safe', 'on'=>'upload')
         );
     }
 }
