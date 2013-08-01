@@ -18,8 +18,8 @@ class UploadForm extends CFormModel
     public function rules()
     {
         return array(
-            array('file', 'file', 'allowEmpty'=>true),
-//            array('name, type, tmp_name, error, size', 'safe'=>true, 'on'=>'upload')
+            array('file', 'file', 'types'=>'jpg, png, gif'),
+            array('file', 'safe', 'on'=>'upload')
         );
     }
 }
