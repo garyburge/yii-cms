@@ -11,6 +11,13 @@ $(document).ready(function() {
             this.on('success', function(file, data) {
                 var data = jQuery.parseJSON(data);
                 if (data.bError) {
+                    var sErrors = '';
+                    $.each(data.aErrors, function(key, aErrors) {
+                        sErrors += "\n"+key+": ";
+                        $.each(aErrors, function(key, sMsg) {
+                            sErrors += ' '+sMsg;
+                        });
+                    });
                     alert("An error occurred during the file upload:\n\n"+data.sMessage);
                 } else {
                     if (data.url) {
