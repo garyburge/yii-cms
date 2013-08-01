@@ -9,6 +9,7 @@ $(document).ready(function() {
         acceptedFiles: '.jpg, .png, .gif',
         init: function() {
             this.on('success', function(file, data) {
+                var data = jQuery.parseJSON(data);
                 if (data.bError) {
                     alert("An error occurred during the file upload:\n\n"+data.sMessage);
                 } else {
