@@ -3,8 +3,20 @@
     'focus'=>array($model, 'first_name'),
 	'enableAjaxValidation'=>false,
 ));
-// load UploadForm javascript
-Yii::app()->clientScriptFile('/assets/js/UploadForm.js', CClinetScript::POS_READY);
+$js = <<<EOT
+function onUploadSuccess(file, e) {
+    var data = jQuery.parseJSON(e);
+    if (data.bError) {
+        alert("Error: "+data.sMessage);
+    } else {
+        alert("sMessage: "+data.sMessage);
+        alert("_FILES: "+data._FILES);
+        alert("attributes: "+data.attributes);
+        alert("upload: "+data.upload);
+    }
+}
+EOT;
+Yii::app()->clientScript->registerScript('media-upload', $js, CClientScript::POS_READY);
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
