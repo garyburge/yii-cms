@@ -59,18 +59,18 @@ class MediaController extends Controller
             $upload->size = $_FILES['file']['size'];
             $upload->error = $_FILES['file']['error'];
             $aResult['attributes'] = print_r($upload->attributes, true);
-            // create upload file object
-            $upload->upload = new CUploadedFile($_FILES['file']['name'],
-                                                $_FILES['file']['tmp_name'],
-                                                $_FILES['file']['type'],
-                                                $_FILES['file']['size'],
-                                                $_FILES['file']['error']);
-            $aResult['upload'] = print_r($upload->upload, true);
             // validate
             if (!$upload->validate()) {
                 $aResult['aErrors'] = $upload->errors;
                 $aResult['bError'] = true;
             } else{
+                // create upload file object
+                $upload->upload = new CUploadedFile($_FILES['file']['name'],
+                                                    $_FILES['file']['tmp_name'],
+                                                    $_FILES['file']['type'],
+                                                    $_FILES['file']['size'],
+                                                    $_FILES['file']['error']);
+                $aResult['upload'] = print_r($upload->upload, true);
                 // copy original file
                 $aParts = pathinfo($_FILES['file']['name']);
                 $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
