@@ -50,31 +50,40 @@ class MediaController extends Controller
         $upload = new UploadForm;
 
         // get uploaded file, if available
-        if (isset($_FILES['UploadForm'])) {
+        if (isset($_FILES['file'])) {
+//            // copy to model
+//            $upload->name = $_FILES['file']['name']['file'];
+//            $upload->tmp_name = $_FILES['file']['tmp_name']['file'];
+//            $upload->type = $_FILES['file']['type']['file'];
+//            $upload->size = $_FILES['file']['size']['file'];
+//            $upload->error = $_FILES['file']['error']['file'];
+//            $aResult['attributes'] = print_r($upload->attributes, true);
+//            $upload->upload = new CUploadedFile($_FILES['file']['name']['file'],
+//                                                $_FILES['file']['tmp_name']['file'],
+//                                                $_FILES['file']['type']['file'],
+//                                                $_FILES['file']['size']['file'],
+//                                                $_FILES['file']['error']['file']);
+//            $aResult['upload'] = print_r($upload->upload, true);
             // copy to model
-            $upload->name = $_FILES['UploadForm']['name']['file'];
-            $upload->tmp_name = $_FILES['UploadForm']['tmp_name']['file'];
-            $upload->type = $_FILES['UploadForm']['type']['file'];
-            $upload->size = $_FILES['UploadForm']['size']['file'];
-            $upload->error = $_FILES['UploadForm']['error']['file'];
+            $upload->attributes = $_FILES['file'];
             $aResult['attributes'] = print_r($upload->attributes, true);
-            $upload->upload = new CUploadedFile($_FILES['UploadForm']['name']['file'],
-                                                $_FILES['UploadForm']['tmp_name']['file'],
-                                                $_FILES['UploadForm']['type']['file'],
-                                                $_FILES['UploadForm']['size']['file'],
-                                                $_FILES['UploadForm']['error']['file']);
+            $upload->upload = new CUploadedFile($_FILES['file']['name'],
+                                                $_FILES['file']['tmp_name'],
+                                                $_FILES['file']['type'],
+                                                $_FILES['file']['size'],
+                                                $_FILES['file']['error']);
             $aResult['upload'] = print_r($upload->upload, true);
-//            if (!$upload->validate()) {
-//                foreach ($upload->errors as $error) {
-//                    $aResult['sMessage'] .= '\n'.$error;
-//                }
-//                $aResult['bError'] = true;
-//            } else{
-                $aParts = pathinfo($upload->upload->name);
+            if (!$upload->validate()) {
+                foreach ($upload->errors as $error) {
+                    $aResult['sMessage'] .= '\n'.$error;
+                }
+                $aResult['bError'] = true;
+            } else{
+                $aParts = pathinfo($upload->name);
                 $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
                 $upload->upload->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
                 $aResult['url'] = $this->module->baseMediaUrl.'/'.$saveAsFileName;
-//            }
+            }
         }
 
         echo CJSON::encode($aResult);
