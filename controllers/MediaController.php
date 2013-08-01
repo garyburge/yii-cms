@@ -78,7 +78,7 @@ class MediaController extends Controller
                 $aResult['aErrors'] = $upload->errors;
                 $aResult['bError'] = true;
             } else{
-                $aParts = pathinfo($upload->name);
+                $aParts = pathinfo($_FILES['file']['name']);
                 $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
                 $upload->upload->saveAs($this->module->baseMediaPath.'/'.$saveAsFileName);
                 $aResult['url'] = $this->module->baseMediaUrl.'/'.$saveAsFileName;
