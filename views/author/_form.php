@@ -3,8 +3,11 @@
     'focus'=>array($model, 'first_name'),
 	'enableAjaxValidation'=>false,
 ));
+// load dropzone files
+Yii::app()->clientScript->registerCssFile('/assets/dropzone/css/dropzone.css');
+Yii::app()->clientScript->registerScriptFile('/assets/dropzone/dropzone.min.js', CClientScript::POS_END);
 // load UploadForm javascript
-Yii::app()->clientScriptFile('/assets/js/UploadForm.js', CClientScript::POS_READY);
+Yii::app()->registerScriptFile('/assets/js/UploadForm.js', CClientScript::POS_END);
 ?>
     <?php echo CHtml::activeHiddenField($model,'media_id'); ?>
 
