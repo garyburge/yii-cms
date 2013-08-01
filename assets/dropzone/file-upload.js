@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
 
     // bind to media image tag
-    $("#media-id-image").on('click', function(e) {
+    $(".media-id-image").on('click', function(e) {
         e.stopPropagation();
         // open file upload dialog
         $("#file-upload-dialog").dialog('open');
