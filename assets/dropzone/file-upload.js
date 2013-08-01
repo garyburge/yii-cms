@@ -1,7 +1,4 @@
 // handle file uploads
-
-$(document).ready(function() {
-
     // set some dropzone options
     Dropzone.options.myAwesomeDropzone = {
         paramName: "file",
@@ -22,6 +19,9 @@ $(document).ready(function() {
             })
         }
     };
+
+
+$(document).ready(function() {
 
     // initialize file upload dialog
     $("#file-upload-dialog").dialog({
