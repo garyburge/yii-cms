@@ -6,6 +6,7 @@
  */
 class UploadForm extends CFormModel
 {
+    public $file;
     public $name;
     public $type;
     public $tmp_name;
