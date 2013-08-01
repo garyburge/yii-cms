@@ -50,7 +50,7 @@ class MediaController extends Controller
         // get uploaded file, if available
         if (isset($_FILES['file'])) {
             // create upload form
-            $upload = new UploadForm;
+            $upload = new UploadForm('upload');;
             // copy to model attributes
             $upload->attributes = $_FILES['file'];
             $upload->file = 'file';
