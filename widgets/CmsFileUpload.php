@@ -22,9 +22,9 @@ class CmsFileUpload extends CWidget
         }
 
         // register assets
-        Yii::app()->clientScript->registerCssFile($assetsUrl.'/css/dropzone.css');
-        Yii::app()->clientScript->registerScriptFile($assetsUrl.'/dropzone.min.js', CClientScript::POS_END);
-        Yii::app()->clientScript->registerScriptFile($assetsUrl.'/file-upload.js', CClientScript::POS_END);
+        Yii::app()->clientScript->registerCssFile($this->_assetsUrl.'/css/dropzone.css');
+        Yii::app()->clientScript->registerScriptFile($this->_assetsUrl.'/dropzone.min.js', CClientScript::POS_END);
+        Yii::app()->clientScript->registerScriptFile($this->_assetsUrl.'/file-upload.js', CClientScript::POS_END);
 
         Yii::trace(__METHOD__." (".__LINE__.": CmsFileUploadWidget initialized", 'application');
     }
