@@ -6,7 +6,7 @@ class CmsFileUploadWidget extends CWidget
 <form id="upload-form" class="dropzone" action="<?php echo $this->createUrl('/media/upload'); ?>" method="post">
     <input type="file" name="file">
 </form>
-    EOT;
+EOT;
 
     public function init()
     {
