@@ -43,5 +43,6 @@
 
 <div id="file-upload-dialog" title="Upload File">
     <?php $this->widget('cms.widgets.CmsFileUpload', array(
+        'forceCopyAssets'=>true,
     )); ?>
 </div>
