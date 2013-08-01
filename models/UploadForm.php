@@ -19,7 +19,7 @@ class UploadForm extends CFormModel
     {
         return array(
             array('name', 'file', 'types'=>'jpg, gif, png'),
-            array('file, name, type, tmp_name, error, size. upload, media_id', 'safe', 'on'=>'upload')
+            array('file, name, type, tmp_name, error, size. upload, media_id', 'safe'=>true, 'on'=>'upload')
         );
     }
 }
