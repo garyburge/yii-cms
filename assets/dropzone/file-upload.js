@@ -3,7 +3,7 @@
 $(document).ready(function() {
 
     // set some dropzone options
-    Dropzone.options.FileUploadForm = {
+    Dropzone.options.fileUploadForm = {
         paramName: "file",
         maxFilesize: 2,
         acceptedFiles: '.jpg, .png, .gif',
