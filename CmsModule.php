@@ -22,6 +22,7 @@ class CmsModule extends CWebModule
 		$this->setImport(array(
 			'cms.models.*',
 			'cms.components.*',
+            'cms.widgets.*',
 		));
 
         // set paths
