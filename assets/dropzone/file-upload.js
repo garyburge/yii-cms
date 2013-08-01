@@ -18,7 +18,7 @@ $(document).ready(function() {
                             sErrors += ' '+sMsg;
                         });
                     });
-                    alert("An error occurred during the file upload:\n\n"+data.sMessage);
+                    alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
                 } else {
                     if (data.url) {
                         // set image tag src attribute
