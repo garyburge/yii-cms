@@ -19,7 +19,7 @@ $(document).ready(function() {
                 // convert to json
                 var data = jQuery.parseJSON(data);
                 // save the file structure
-                app.image = data._FILES.image;
+                app.image = data._FILES
                 // submit the form
                 $('#file-upload-form').submit();
             })
@@ -48,7 +48,7 @@ $(document).ready(function() {
         $.ajax({
             url: '/cms/media/imageupload',
             type: 'post',
-            data: {image: {image: app.image}},
+            data: {image: image: app.image},
             dataType: 'json',
         }).fail(function(jqXHR, status, errorThrown) {
             alert("Error: "+jqXHR.responseText);
