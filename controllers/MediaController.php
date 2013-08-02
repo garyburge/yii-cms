@@ -41,8 +41,10 @@ class MediaController extends Controller
             'aErrors'=>false,
             '_FILES'=>'',
             'attributes'=>'',
-            'upload'=>'',
-            'url'=>'',
+            'cUploadedFile'=>'',
+            'originalUrl'=>'',
+            'thumbUrl'=>'',
+            'resizedUrl'=>'',
             'media_id'=>0
         );
         $aResult['_FILES'] = print_r($_FILES, true);
@@ -50,31 +52,109 @@ class MediaController extends Controller
         // create upload form
         $upload = new UploadForm('upload');;
 
-        // get uploaded file, if available
-        if (isset($_FILES['file'])) {
-            // copy to model attributes
-            $upload->attributes = $_FILES['file'];
-            $file = CUploadedFile::getInstance($upload, 'file');
-            $aResult['attributes'] .= print_r($upload->attributes, true);
-            $aResult['attributes'] .= print_r($file, true);
-            // validate
-            if (!$upload->validate()) {
-                $aResult['aErrors'] = $upload->errors;
-                $aResult['bError'] = true;
-            } else{
-                // copy original file
-                $aParts = pathinfo($_FILES['file']['name']);
-                $saveAsFileName = md5($aParts['filename']).'.'.$aParts['extension'];
-                $upload->upload->saveAs($this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName);
-                $aResult['url'] = $this->module->baseMediaUrl.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName;
+        try {
+            // get uploaded file, if available
+            if (isset($_FILES['file'])) {
+                // copy to model attributes
+                $upload->attributes = $_FILES['file'];
+                $cUploadedFile = CUploadedFile::getInstance($upload, 'file');
+                $aResult['cUploadedFile'] = $cUploadedFile;
+                $aResult['attributes'] .= print_r($upload->attributes, true);
+                $aResult['attributes'] .= print_r($file, true);
+                // validate
+                if (!$upload->validate()) {
+                    $aResult['aErrors'] = $upload->errors;
+                    throw new CException()"An error occured during the attempted file transfer: ");
+                } else{
+                    // create save as file name
+                    $aParts = pathinfo($_FILES['file']['name']);
+                    $saveAsFileName = md5($aParts['filename'].time()).'.'.$aParts['extension'];
+
+                    // copy uploaded file to original file directory
+                    if (!$cUploadedFile->saveAs($this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName)) {
+                        throw new CException("Error: Unable to copy the uploaded file to the correct destination.");
+                    }
+                    $aResult['originalUrl'] = $this->module->baseMediaUrl.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName;
+
+                    // save and create thumbnail
+                    $aResult['thumbUrl'] = $this->createThumb($saveAsFileName);
+
+                    // save and create cropped file (cropped to max width or height)
+                    $aResult['resizedUrl'] = $this->createResized($saveAsFileName);
+
+                    // get media type id
+                    $sql = "SELECT id FROM media_type ".
+                           "WHERE extension = :extension ";
+                    if (false === ($media_type_id = Yii::app()->db->createCommand($sql)->queryScalar(array(':extension'=>$aParts['extension'])))) {
+                        throw new CException("Error: ".$aParts['extension']." is an unknown type of image file.");
+                    }
+
+                    // create model
+                    $model = new Media;
+
+                    // initialize its attributes
+                    $model->media_type_id = $media_type_id;
+                    $model->file = $saveAsFileName;
+                    $model->title = 'Uploaded File';
+                    if (!model->save()) {
+                        throw new CException("Error: Unable to save the uploaded file information to the database.");
+                    }
+
+                    // return media id
+                    $aResult['media_id'] = $model->id;
+
+                }
             }
+        } catch (CException $e) {
+            $aResult['bError'] = true;
+            $aResult['sMessage'] = $e->getMessage();
         }
 
         echo CJSON::encode($aResult);
         Yii::app()->end();
 	}
 
+    /**
+     * Create a thumbnail file
+     *
+     * @param string $file the file name to use for the converted thumbnail image
+     * @return string $thumbUrl the url to the thumbnamil file
+     */
+    public function createThumb($fileName)
+    {
+        $originalPath = $this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$fileName;
+        $thumbPath = $this->module->baseMediaPath.'/'.$this->module->imageThumbsDir.'/'.$fileName;
 
+        // crop for thumbnail size
+        Yii::app()->wideimage->load($originalPath)
+                  ->adaptive($this->module->$imageThumbWidth, $this->module->$imageThumbHeight)
+                  ->quality(90)
+                  ->save($thumbPath, 0644, true);
+
+        return $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$fileName;
+
+    }
+
+    /**
+     * Resize uploaded image to max width/max height
+     * @param string $fileName
+     * @return string the url of the resized file
+     * @throws CException
+     */
+    public function createResized($fileName)
+    {
+        $originalPath = $this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$fileName;
+        $croppedPath = $this->module->baseMediaPath.'/'.$fileName;
+
+        // crop for thumbnail size
+        Yii::app()->wideimage->load($originalPath)
+                  ->adaptive($this->module->$imageMaxWidth, $this->module->$imageMaxHeight, true)
+                  ->quality(90)
+                  ->save($croppedPath, 0644, true);
+
+        return $this->module->baseMediaUrl.'/'.$fileName;
+
+    }
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
