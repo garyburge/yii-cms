@@ -34,7 +34,7 @@ class CmsModule extends CWebModule
      * Url to published CMS assets
      * @var string the url to the published assets
      */
-    protected $_assetsUrl = false;
+    public $assetsUrl = false;
 
     /**
      * Initialize module
@@ -60,9 +60,9 @@ class CmsModule extends CWebModule
     public function publishAssets()
     {
         // if not published
-        if (!$this->_assetsUrl) {
+        if (!$this->assetsUrl) {
 			$assetsPath = Yii::getPathOfAlias('cms.assets');
-			$this->_assetsUrl = Yii::app()->assetManager->publish($assetsPath, false, -1, $this->forceCopyAssets);
+			$this->assetsUrl = Yii::app()->assetManager->publish($assetsPath, false, -1, $this->forceCopyAssets);
         }
     }
 }
