@@ -130,7 +130,42 @@ class MediaController extends Controller
      */
     public function actionImageUpload()
     {
-        
+        $aResult = array(
+            'bError'=>false,
+            'sMessage'=>'',
+            'aErrors'=>false,
+            'cUploadedFile'=>false,
+            'thumbUrl'=>'',
+            'original_file'=>'',
+            'file'=>''
+        );
+
+        if (isset($_POST['image'])) {
+            // create model
+            $model = new UploadForm;
+
+            // copy to form data to model
+            $model->attributes = $_POST['image'];
+
+            // create uploaded file object
+            $model->image = CUploadedFile::getInstance($model, 'image');
+            $aResult['cUploadedFile'] = print_r($model->image, true);
+
+//            //validate
+//            if (!$model->validate()) {
+//                // return error information
+//                $aResult['bError'] = true;
+//                $aResult['sMessage'] = "Invalid or Missing Input: ";
+//                $aResult['aErrors'] = $model->errors;
+//            } else {
+//                // save the uploaded file
+//                $model->image->saveAs('/srv/www/yii-test/images/'.$model->image);
+//            }
+        }
+
+        // return data
+        echo CJSON::encode($aResult);
+        Yii::app()->end();
     }
 
     /**
