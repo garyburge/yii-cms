@@ -135,6 +135,7 @@ class MediaController extends Controller
             'sMessage'=>'',
             'aErrors'=>false,
             '_FILES'=>false,
+            '_POST'=>false,
             'cUploadedFile'=>false,
             'thumbUrl'=>'',
             'original_file'=>'',
@@ -146,6 +147,8 @@ class MediaController extends Controller
         }
 
         if (isset($_POST['image'])) {
+            $aResult['_POST'] = print_r($_POST, true);
+            
             // create model
             $model = new UploadForm;
 
