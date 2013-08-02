@@ -25,7 +25,7 @@ $(document).ready(function() {
                 $.ajax({
                     url: '/cms/media/imageupload',
                     type: 'post',
-                    data: {image: data._FILES},
+                    data: data._FILES,
                     dataType: 'json',
                 }).fail(function(jqXHR, status, errorThrown) {
                     alert("Error: "+jqXHR.responseText);
