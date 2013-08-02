@@ -8,7 +8,7 @@
 
     // register required files
     Yii::app()->clientScript->registerCssFile($assetsUrl.'/dropzone/css/dropzone.css');
-    Yii::app()->clientScript->registerScriptFile($assetsUrl.'/dropzone/js/dropzone.min.js', CClientScript::POS_END);
+    Yii::app()->clientScript->registerScriptFile($assetsUrl.'/dropzone/dropzone.min.js', CClientScript::POS_END);
     Yii::app()->clientScript->registerScriptFile($assetsUrl.'/media-form.js', CClientScript::POS_END);
 ?>
 
