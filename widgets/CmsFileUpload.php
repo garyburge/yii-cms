@@ -2,6 +2,9 @@
 
 class CmsFileUpload extends CWidget
 {
+    public $imgTagId = 'media-id-image';
+    public $mediaFileId = 'Media_original_file';
+
     public function init()
     {
         // this method is called by CController::beginWidget()
@@ -21,7 +24,7 @@ class CmsFileUpload extends CWidget
     public function run()
     {
         // output form
-        $this->render('file-upload-form');
+        $this->render('file-upload-form', array('imgTagId'=>$this->imgTagId, 'mediaFileId'=>$this->mediaFileId));
     }
 
 }

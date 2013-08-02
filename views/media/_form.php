@@ -53,7 +53,10 @@
 <?php $this->endWidget(); ?>
 
 <div id="file-upload-dialog" title="Upload File">
-    <?php $this->widget('cms.widgets.CmsFileUpload', array()); ?>
+    <?php $this->widget('cms.widgets.CmsFileUpload', array(
+        'imgTagId'=>'media-id-image',
+        'mediaFileId'=>'Media_original_file'
+    )); ?>
 </div>
 
 <script>

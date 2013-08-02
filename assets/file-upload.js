@@ -2,6 +2,11 @@
 
 $(document).ready(function() {
 
+    app = {
+        imgTagId: g_imgTagId,
+        mediaFileId: g_mediaFileId
+    };
+
     // set some dropzone options
     Dropzone.options.fileUploadForm = {
         paramName: "file",
@@ -20,11 +25,9 @@ $(document).ready(function() {
                     });
                     alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
                 } else {
-                    if (data.url) {
+                    if (data.thumbUrl) {
                         // set image tag src attribute
-                        $('#media-id-image').attr('src', data.thumbUrl);
-                        // set media id hidden tag
-                        $('#media_id').val(datal.media_id);
+                        $('#'+mediaFileId).attr('src', data.thumbUrl);
                     }
                 }
             })
@@ -40,7 +43,7 @@ $(document).ready(function() {
     });
 
     // bind to media image tag
-    $(".media-id-image").on('click', function(e) {
+    $('#'+app.imgTagId).on('click', function(e) {
         e.stopPropagation();
         // open file upload dialog
         $("#file-upload-dialog").dialog('open');

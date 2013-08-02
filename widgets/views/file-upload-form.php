@@ -4,3 +4,7 @@
     </div>
 </form>
 
+<script>
+    var g_imgTagId = '<?php echo $imgTagId; ?>';
+    var g_mediaFileId = '<?php echo $mediaFileId; ?>';
+</script>
