@@ -52,21 +52,21 @@ class MediaController extends Controller
         $aResult['_FILES'] = print_r($_FILES, true);
 
         // create upload form
-        $upload = new UploadForm('upload');;
+        $upload = new Media;
 
         try {
             // get uploaded file, if available
             if (isset($_FILES['file'])) {
                 // copy to model attributes
-                $upload->attributes = $_FILES['file'];
-                $model->image = CUploadedFile::getInstance($upload, 'image');
+                $media->attributes = $_FILES['file'];
+                $model->media = CUploadedFile::getInstance($media, 'file');
 
                 // debug returns
                 $aResult['attributes'] .= print_r($upload->attributes, true);
                 $aResult['cUploadedFile'] .= print_r($cUploadedFile, true);
 
                 // validate
-                if (!$upload->save()) {
+                if (!$media->validate()) {
                     $aResult['aErrors'] = $upload->errors;
                     throw new CException("An error occured during the attempted file transfer: ");
                 } else{
@@ -94,18 +94,18 @@ class MediaController extends Controller
                     }
 
                     // create model
-                    $model = new Media;
+                    //$model = new Media;
 
                     // initialize its attributes
-                    $model->media_type_id = $media_type_id;
-                    $model->file = $saveAsFileName;
-                    $model->title = 'Uploaded File';
-                    if (!$model->save()) {
+                    $media->media_type_id = $media_type_id;
+                    $media->file = $saveAsFileName;
+                    $media->title = 'Uploaded File';
+                    if (!$media->save()) {
                         throw new CException("Error: Unable to save the uploaded file information to the database.");
                     }
 
                     // return media id
-                    $aResult['media_id'] = $model->id;
+                    $aResult['media_id'] = $media->id;
                 }
             }
         } catch (CException $e) {
