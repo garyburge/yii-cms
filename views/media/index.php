@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Media','url'=>array('create')),
-	array('label'=>'Manage Media','url'=>array('admin')),
 );
 ?>
 
