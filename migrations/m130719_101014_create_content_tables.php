@@ -66,7 +66,8 @@ class m130719_101014_create_content_tables extends CDbMigration
         $this->createTable('media', array(
             'id'=>'pk',
             'media_type_id'=>'INTEGER NOT NULL',
-            'file'=>'VARCHAR(255) NOT NULL',
+            'original_name_name'=>'VARCHAR(255) NOT NULL',
+            'file_name'=>'VARCHAR(255) NOT NULL',
             'title'=>'VARCHAR(255) NOT NULL',
             'caption'=>'TEXT NULL DEFAULT NULL',
             'attribution'=>'VARCHAR(255) NULL DEFAULT NULL',
