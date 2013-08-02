@@ -64,7 +64,7 @@ class MediaController extends Controller
                 // validate
                 if (!$upload->validate()) {
                     $aResult['aErrors'] = $upload->errors;
-                    throw new CException()"An error occured during the attempted file transfer: ");
+                    throw new CException("An error occured during the attempted file transfer: ");
                 } else{
                     // create save as file name
                     $aParts = pathinfo($_FILES['file']['name']);
@@ -96,7 +96,7 @@ class MediaController extends Controller
                     $model->media_type_id = $media_type_id;
                     $model->file = $saveAsFileName;
                     $model->title = 'Uploaded File';
-                    if (!model->save()) {
+                    if (!$model->save()) {
                         throw new CException("Error: Unable to save the uploaded file information to the database.");
                     }
 
