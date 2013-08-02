@@ -51,25 +51,25 @@ class MediaController extends Controller
         $aResult['_POST'] = print_r($_POST, true);
         $aResult['_FILES'] = print_r($_FILES, true);
 
-//        // create upload form
-//        $upload = new Media;
-//
-//        try {
-//            // get uploaded file, if available
-//            if (isset($_FILES['file'])) {
-//                // copy to model attributes
-//                $media->attributes = $_FILES['file'];
+        // create upload form
+        $upload = new Media;
+
+        try {
+            // get uploaded file, if available
+            if (isset($_FILES['file'])) {
+                // copy to model attributes
+                $media->attributes = $_FILES['file'];
 //                $model->media = CUploadedFile::getInstance($media, 'file');
-//
-//                // debug returns
-//                $aResult['attributes'] .= print_r($upload->attributes, true);
+
+                // debug returns
+                $aResult['attributes'] .= print_r($upload->attributes, true);
 //                $aResult['cUploadedFile'] .= print_r($cUploadedFile, true);
 //
 //                // validate
-//                if (!$media->validate()) {
-//                    $aResult['aErrors'] = $upload->errors;
-//                    throw new CException("An error occured during the attempted file transfer: ");
-//                } else{
+                if (!$media->validate()) {
+                    $aResult['aErrors'] = $upload->errors;
+                    throw new CException("An error occured during the attempted file transfer: ");
+                } else {
 //                    // create save as file name
 //                    $aParts = pathinfo($_FILES['file']['name']);
 //                    $saveAsFileName = md5($aParts['filename'].time()).'.'.$aParts['extension'];
@@ -106,12 +106,12 @@ class MediaController extends Controller
 //
 //                    // return media id
 //                    $aResult['media_id'] = $media->id;
-//                }
-//            }
-//        } catch (CException $e) {
-//            $aResult['bError'] = true;
-//            $aResult['sMessage'] = $e->getMessage();
-//        }
+                }
+            }
+        } catch (CException $e) {
+            $aResult['bError'] = true;
+            $aResult['sMessage'] = $e->getMessage();
+        }
 
         echo CJSON::encode($aResult);
         Yii::app()->end();
