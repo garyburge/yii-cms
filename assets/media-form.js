@@ -7,17 +7,16 @@ $(document).ready(function() {
         imageThumbsDir: g_imageThumbsDir
     }
 
-    // set some dropzone options
-    Dropzone.options.fileUploadForm = {
+    // initialize dropzone on no-image div
+    $('#div-no-image').dropzone({
         url: '/media/upload.html',
         paramName: 'file',
-        maxFilesize: 2,
+        maxFileSize: 2,
         acceptedFiles: '.jpg, .png, .gif',
-    };
-
+    });
+    
     // set dropzone div, image div
     if (app.isNewRecord) {
-        $('#div-no-image').addClass('dropzone');
         $('#div-no-image').show();
         $('#div-with-image').hide();
     } else {
