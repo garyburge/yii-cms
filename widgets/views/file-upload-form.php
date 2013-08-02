@@ -1,9 +1,4 @@
-<form id="file-upload-form" action="<?php echo $this->controller->createUrl('/cms/media/imageupload'); ?>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="image" value="image'>
-    <div class="fallback">
-        <input name="file" type="file" multiple />
-    </div>
-</form>
+<form id="file-upload-form" action="<?php echo $this->controller->createUrl('/cms/media/imageupload'); ?>" method="post" enctype="multipart/form-data"></form>
 
 <script>
     var g_imgTagId = '<?php echo $imgTagId; ?>';

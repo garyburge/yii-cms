@@ -5,7 +5,7 @@ $(document).ready(function() {
     app = {
         imgTagId: g_imgTagId,
         mediaOriginalFileId: g_mediaOriginalFileId,
-        mediaFileId: g_mediaFileId
+        mediaFileId: g_mediaFileId,
     };
 
     // set some dropzone options
