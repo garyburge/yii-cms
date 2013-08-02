@@ -28,12 +28,10 @@ $(document).ready(function() {
                     });
                     alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
                 } else {
-                    if (data.original_filel) {
-                        // set media.original_file tag
-                        $('#'+app.mediaOriginalFileId).val(data.original_file);
-                        // set media.file tag
-                        $('#'+app.mediaFileId).val(data.file);
-                    }
+                    // set media.original_file tag
+                    $('#'+app.mediaOriginalFileId).val(data.original_file);
+                    // set media.file tag
+                    $('#'+app.mediaFileId).val(data.file);
                 }
 //                $.ajax({
 //                    url: '/cms/media/imageupload',
