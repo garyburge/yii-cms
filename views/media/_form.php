@@ -24,7 +24,7 @@
         <li class="span4">
             <div class="thumbnail">
                 <div id="div-no-image">
-                    <div class="media-id-image" style="width:100%; border:1px solid #eee;" title="Click to upload an image file"></div>
+                    <div class="media-id-image" style="width:100%; height:150px; border:1px solid #eee;" title="Click to upload an image file"></div>
                 </div>
                 <div id="div-with-image">
                     <img class="media-id-image" id="media-id-image" src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$model->file; ?>" alt="image" title="<?php echo $model->title.' ('.$model->width.'x'.$model->height.')'; ?>">
