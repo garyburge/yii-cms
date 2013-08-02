@@ -6,6 +6,7 @@ $(document).ready(function() {
         imgTagId: g_imgTagId,
         mediaOriginalFileId: g_mediaOriginalFileId,
         mediaFileId: g_mediaFileId,
+        image: null
     };
 
     // set some dropzone options
@@ -15,7 +16,10 @@ $(document).ready(function() {
         acceptedFiles: '.jpg, .png, .gif',
         init: function() {
             this.on('success', function(file, data) {
+                // convert to json
                 var data = jQuery.parseJSON(data);
+                // save the file structure
+                app.image = data._FILES;
                 // submit the form
                 $('#file-upload-form').submit();
             })
@@ -44,7 +48,7 @@ $(document).ready(function() {
         $.ajax({
             url: '/cms/media/imageupload',
             type: 'post',
-            data: {image: {image: 'image'}},
+            data: {image: {image: app.image}},
             dataType: 'json',
         }).fail(function(jqXHR, status, errorThrown) {
             alert("Error: "+jqXHR.responseText);
