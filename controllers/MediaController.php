@@ -2,6 +2,8 @@
 
 class MediaController extends Controller
 {
+    public $defaultAction = 'admin';
+    
 	/**
 	 * @return array action filters
 	 */
@@ -20,144 +22,109 @@ class MediaController extends Controller
 	public function accessRules()
 	{
 		return array(
-            array('allow',
-                  'actions'=>array('upload'),
-                  'roles'=>$this->module->authRolesMedia,
-            ),
+			array('allow',
+				  'actions'=>array('admin','view','create','update','delete'),
+				  'roles'=>$this->module->authRolesMedia
+			),
 			array('deny',  // deny all users
-				  'users'=>array('*'),
+                  'users'=>array('*'),
 			),
 		);
 	}
 
 	/**
-	 * upload a file
+	 * Manages all models.
 	 */
-	public function actionUpload()
+	public function actionAdmin()
 	{
-        $aResult = array(
-            'bError'=>false,
-            'sMessage'=>'',
-            'aErrors'=>false,
-            '_POST'=>'',
-            '_FILES'=>'',
-            'attributes'=>'',
-            'cUploadedFile'=>'',
-            'originalUrl'=>'',
-            'thumbUrl'=>'',
-            'resizedUrl'=>'',
-            'media_id'=>0
-        );
-        $aResult['_POST'] = print_r($_POST, true);
-        $aResult['_FILES'] = print_r($_FILES, true);
+		$model=new Media('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Media']))
+			$model->attributes=$_GET['Media'];
 
-        // create upload form
-        $upload = new Media;
-
-        try {
-            // get uploaded file, if available
-            if (isset($_FILES['file'])) {
-                // copy to model attributes
-                $media->attributes = $_FILES['file'];
-//                $model->media = CUploadedFile::getInstance($media, 'file');
-
-                // debug returns
-                $aResult['attributes'] .= print_r($upload->attributes, true);
-//                $aResult['cUploadedFile'] .= print_r($cUploadedFile, true);
-//
-//                // validate
-                if (!$media->validate()) {
-                    $aResult['aErrors'] = $upload->errors;
-                    throw new CException("An error occured during the attempted file transfer: ");
-                } else {
-//                    // create save as file name
-//                    $aParts = pathinfo($_FILES['file']['name']);
-//                    $saveAsFileName = md5($aParts['filename'].time()).'.'.$aParts['extension'];
-//
-//                    // copy uploaded file to original file directory
-//                    if (!$cUploadedFile->saveAs($this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName)) {
-//                        throw new CException("Error: Unable to copy the uploaded file to the correct destination.");
-//                    }
-//                    $aResult['originalUrl'] = $this->module->baseMediaUrl.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName;
-//
-//                    // save and create thumbnail
-//                    $aResult['thumbUrl'] = $this->createThumb($saveAsFileName);
-//
-//                    // save and create cropped file (cropped to max width or height)
-//                    $aResult['resizedUrl'] = $this->createResized($saveAsFileName);
-//
-//                    // get media type id
-//                    $sql = "SELECT id FROM media_type ".
-//                           "WHERE extension = :extension ";
-//                    if (false === ($media_type_id = Yii::app()->db->createCommand($sql)->queryScalar(array(':extension'=>$aParts['extension'])))) {
-//                        throw new CException("Error: ".$aParts['extension']." is an unknown type of image file.");
-//                    }
-//
-//                    // create model
-//                    //$model = new Media;
-//
-//                    // initialize its attributes
-//                    $media->media_type_id = $media_type_id;
-//                    $media->file = $saveAsFileName;
-//                    $media->title = 'Uploaded File';
-//                    if (!$media->save()) {
-//                        throw new CException("Error: Unable to save the uploaded file information to the database.");
-//                    }
-//
-//                    // return media id
-//                    $aResult['media_id'] = $media->id;
-                }
-            }
-        } catch (CException $e) {
-            $aResult['bError'] = true;
-            $aResult['sMessage'] = $e->getMessage();
-        }
-
-        echo CJSON::encode($aResult);
-        Yii::app()->end();
+		$this->render('admin',array(
+			'model'=>$model,
+		));
 	}
 
-    /**
-     * Create a thumbnail file
-     *
-     * @param string $file the file name to use for the converted thumbnail image
-     * @return string $thumbUrl the url to the thumbnamil file
-     */
-    public function createThumb($fileName)
-    {
-        $originalPath = $this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$fileName;
-        $thumbPath = $this->module->baseMediaPath.'/'.$this->module->imageThumbsDir.'/'.$fileName;
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionView($id)
+	{
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
 
-        // crop for thumbnail size
-        Yii::app()->wideimage->load($originalPath)
-                  ->adaptive($this->module->$imageThumbWidth, $this->module->$imageThumbHeight)
-                  ->quality(90)
-                  ->save($thumbPath, 0644, true);
+	/**
+	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreate()
+	{
+		$model=new Media;
 
-        return $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$fileName;
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
 
-    }
+		if(isset($_POST['Media']))
+		{
+			$model->attributes=$_POST['Media'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
 
-    /**
-     * Resize uploaded image to max width/max height
-     * @param string $fileName
-     * @return string the url of the resized file
-     * @throws CException
-     */
-    public function createResized($fileName)
-    {
-        $originalPath = $this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$fileName;
-        $croppedPath = $this->module->baseMediaPath.'/'.$fileName;
+		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
 
-        // crop for thumbnail size
-        Yii::app()->wideimage->load($originalPath)
-                  ->adaptive($this->module->$imageMaxWidth, $this->module->$imageMaxHeight, true)
-                  ->quality(90)
-                  ->save($croppedPath, 0644, true);
+	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionUpdate($id)
+	{
+		$model=$this->loadModel($id);
 
-        return $this->module->baseMediaUrl.'/'.$fileName;
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
 
-    }
+		if(isset($_POST['Media']))
+		{
+			$model->attributes=$_POST['Media'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id)
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
+
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -165,7 +132,7 @@ class MediaController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model = Media::model()->findByPk($id);
+		$model=Media::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -183,4 +150,16 @@ class MediaController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+//	/**
+//	 * Lists all models.
+//	 */
+//	public function actionIndex()
+//	{
+//		$dataProvider=new CActiveDataProvider('Media');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
+//	}
+
 }
