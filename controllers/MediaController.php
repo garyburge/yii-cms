@@ -135,42 +135,29 @@ class MediaController extends Controller
             'sMessage'=>'',
             'aErrors'=>false,
             '_FILES'=>false,
-            '_POST'=>false,
-            'attributes'=>false,
-            'cUploadedFile'=>false,
-            'thumbUrl'=>'',
             'original_file'=>'',
             'file'=>''
         );
 
         if (isset($_FILES)) {
             $aResult['_FILES'] = print_r($_FILES, true);
-        }
 
-        if (isset($_POST['image'])) {
-            $aResult['_POST'] = print_r($_POST, true);
+            // save original file size
+            $original_file = $_FILES['image']['name'];
+            $aResult['original_file'] = $original_file;
 
-            // create model
-            $model = new UploadForm;
+            // get extension
+            $aParts = pathinfo($original_file);
 
-            // copy to form data to model
-            $model->attributes = $_POST['image'];
-            $aResult['attributes'] = print_r($model->attributes, true);
+            $file = md5($original_file.time()).'.'.$aParts['extension'];
+            $aResult['file'] = $file;
 
-            // create uploaded file object
-            $model->image = CUploadedFile::getInstance($model, 'image');
-            $aResult['cUploadedFile'] = print_r($model->image, true);
+            $original_file_path = $this->module->baseMediaPath.'/'.
+                                  $this->module->imageOriginalDir.'/'.
+                                  $file;
 
-//            //validate
-//            if (!$model->validate()) {
-//                // return error information
-//                $aResult['bError'] = true;
-//                $aResult['sMessage'] = "Invalid or Missing Input: ";
-//                $aResult['aErrors'] = $model->errors;
-//            } else {
-//                // save the uploaded file
-//                $model->image->saveAs('/srv/www/yii-test/images/'.$model->image);
-//            }
+            // copy tmp file to original file location
+            move_uploaded_file($_FILES['image']['tmp_name'], $original_file_path);
         }
 
         // return data

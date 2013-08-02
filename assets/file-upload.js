@@ -36,9 +36,7 @@ $(document).ready(function() {
                         });
                         alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
                     } else {
-                        if (data.thumbUrl) {
-                            // set image tag src attribute
-                            $('#'+app.imgTagId).attr('src', data.thumbUrl);
+                        if (data.original_filel) {
                             // set media.original_file tag
                             $('#'+app.mediaOriginalFileId).val(data.original_file);
                             // set media.file tag
