@@ -51,67 +51,67 @@ class MediaController extends Controller
         $aResult['_POST'] = print_r($_POST, true);
         $aResult['_FILES'] = print_r($_FILES, true);
 
-        // create upload form
-        $upload = new Media;
-
-        try {
-            // get uploaded file, if available
-            if (isset($_FILES['file'])) {
-                // copy to model attributes
-                $media->attributes = $_FILES['file'];
-                $model->media = CUploadedFile::getInstance($media, 'file');
-
-                // debug returns
-                $aResult['attributes'] .= print_r($upload->attributes, true);
-                $aResult['cUploadedFile'] .= print_r($cUploadedFile, true);
-
-                // validate
-                if (!$media->validate()) {
-                    $aResult['aErrors'] = $upload->errors;
-                    throw new CException("An error occured during the attempted file transfer: ");
-                } else{
-                    // create save as file name
-                    $aParts = pathinfo($_FILES['file']['name']);
-                    $saveAsFileName = md5($aParts['filename'].time()).'.'.$aParts['extension'];
-
-                    // copy uploaded file to original file directory
-                    if (!$cUploadedFile->saveAs($this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName)) {
-                        throw new CException("Error: Unable to copy the uploaded file to the correct destination.");
-                    }
-                    $aResult['originalUrl'] = $this->module->baseMediaUrl.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName;
-
-                    // save and create thumbnail
-                    $aResult['thumbUrl'] = $this->createThumb($saveAsFileName);
-
-                    // save and create cropped file (cropped to max width or height)
-                    $aResult['resizedUrl'] = $this->createResized($saveAsFileName);
-
-                    // get media type id
-                    $sql = "SELECT id FROM media_type ".
-                           "WHERE extension = :extension ";
-                    if (false === ($media_type_id = Yii::app()->db->createCommand($sql)->queryScalar(array(':extension'=>$aParts['extension'])))) {
-                        throw new CException("Error: ".$aParts['extension']." is an unknown type of image file.");
-                    }
-
-                    // create model
-                    //$model = new Media;
-
-                    // initialize its attributes
-                    $media->media_type_id = $media_type_id;
-                    $media->file = $saveAsFileName;
-                    $media->title = 'Uploaded File';
-                    if (!$media->save()) {
-                        throw new CException("Error: Unable to save the uploaded file information to the database.");
-                    }
-
-                    // return media id
-                    $aResult['media_id'] = $media->id;
-                }
-            }
-        } catch (CException $e) {
-            $aResult['bError'] = true;
-            $aResult['sMessage'] = $e->getMessage();
-        }
+//        // create upload form
+//        $upload = new Media;
+//
+//        try {
+//            // get uploaded file, if available
+//            if (isset($_FILES['file'])) {
+//                // copy to model attributes
+//                $media->attributes = $_FILES['file'];
+//                $model->media = CUploadedFile::getInstance($media, 'file');
+//
+//                // debug returns
+//                $aResult['attributes'] .= print_r($upload->attributes, true);
+//                $aResult['cUploadedFile'] .= print_r($cUploadedFile, true);
+//
+//                // validate
+//                if (!$media->validate()) {
+//                    $aResult['aErrors'] = $upload->errors;
+//                    throw new CException("An error occured during the attempted file transfer: ");
+//                } else{
+//                    // create save as file name
+//                    $aParts = pathinfo($_FILES['file']['name']);
+//                    $saveAsFileName = md5($aParts['filename'].time()).'.'.$aParts['extension'];
+//
+//                    // copy uploaded file to original file directory
+//                    if (!$cUploadedFile->saveAs($this->module->baseMediaPath.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName)) {
+//                        throw new CException("Error: Unable to copy the uploaded file to the correct destination.");
+//                    }
+//                    $aResult['originalUrl'] = $this->module->baseMediaUrl.'/'.$this->module->imageOriginalDir.'/'.$saveAsFileName;
+//
+//                    // save and create thumbnail
+//                    $aResult['thumbUrl'] = $this->createThumb($saveAsFileName);
+//
+//                    // save and create cropped file (cropped to max width or height)
+//                    $aResult['resizedUrl'] = $this->createResized($saveAsFileName);
+//
+//                    // get media type id
+//                    $sql = "SELECT id FROM media_type ".
+//                           "WHERE extension = :extension ";
+//                    if (false === ($media_type_id = Yii::app()->db->createCommand($sql)->queryScalar(array(':extension'=>$aParts['extension'])))) {
+//                        throw new CException("Error: ".$aParts['extension']." is an unknown type of image file.");
+//                    }
+//
+//                    // create model
+//                    //$model = new Media;
+//
+//                    // initialize its attributes
+//                    $media->media_type_id = $media_type_id;
+//                    $media->file = $saveAsFileName;
+//                    $media->title = 'Uploaded File';
+//                    if (!$media->save()) {
+//                        throw new CException("Error: Unable to save the uploaded file information to the database.");
+//                    }
+//
+//                    // return media id
+//                    $aResult['media_id'] = $media->id;
+//                }
+//            }
+//        } catch (CException $e) {
+//            $aResult['bError'] = true;
+//            $aResult['sMessage'] = $e->getMessage();
+//        }
 
         echo CJSON::encode($aResult);
         Yii::app()->end();
