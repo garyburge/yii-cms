@@ -42,9 +42,7 @@
 <?php $this->endWidget(); ?>
 
 <div id="file-upload-dialog" title="Upload File">
-    <?php $this->widget('cms.widgets.CmsFileUpload', array(
-        'forceCopyAssets'=>true,
-    )); ?>
+    <?php $this->widget('cms.widgets.CmsFileUpload', array()); ?>
 </div>
 
 <script></script>
