@@ -19,7 +19,7 @@ $(document).ready(function() {
                 // convert to json
                 var data = jQuery.parseJSON(data);
                 // save the file structure
-                app.image = data._FILES;
+                app.image = data._FILES.image;
                 // submit the form
                 $('#file-upload-form').submit();
             })
