@@ -58,5 +58,5 @@
 <script>
     var g_isNewRecord = <?php echo ($model->isNewRecord ? 'true' : 'false'); ?>;
     var g_baseMediaUrl = '<?php echo $this->module->baseMediaUrl; ?>';
-    var g_imageThumbsDir' = '<?php echo $this->module->imageThumbsDir; ?>';
+    var g_imageThumbsDir = '<?php echo $this->module->imageThumbsDir; ?>';
 </script>
