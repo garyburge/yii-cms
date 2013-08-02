@@ -44,7 +44,7 @@ $(document).ready(function() {
         $.ajax({
             url: '/cms/media/imageupload',
             type: 'post',
-            data: {image: {file: 'file'}},
+            data: {image: {image: 'image'}},
             dataType: 'json',
         }).fail(function(jqXHR, status, errorThrown) {
             alert("Error: "+jqXHR.responseText);
