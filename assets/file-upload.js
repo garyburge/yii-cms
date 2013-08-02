@@ -15,6 +15,7 @@ $(document).ready(function() {
         acceptedFiles: '.jpg, .png, .gif',
         init: function() {
             this.on('success', function(file, data) {
+                var data = jQuery.parseJSON(data);
                 // submit the form
                 $('#file-upload-form').submit();
             })
