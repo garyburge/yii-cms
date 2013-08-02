@@ -1,6 +1,15 @@
 <?php
+    // get media types
     $sql = "SELECT id, CONCAT(extension, ' (', name, ')') AS value FROM media_type ORDER BY extension";
     $aTypes = Yii::app()->db->createCommand($sql)->queryAll(true);
+
+    // save assets url
+    $assetsUrl = $this->module->assetsUrl;
+
+    // register required files
+    Yii::app()->clientScript->registerCssFile($assetsUrl.'/dropzone/css/dropzone.css');
+    Yii::app()->clientScript->registerScriptFile($assetsUrl.'/dropzone/js/dropzone.min.js', CClientScript::POS_END);
+    Yii::app()->clientScript->registerScriptFile($assetsUrl.'/media-form.js', CClientScript::POS_END);
 ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
@@ -14,10 +23,10 @@
     <ul class="thumbnails">
         <li class="span4">
             <div class="thumbnail">
-                <div id="div-no-image"<?php echo ($model->isNewRecord ? '' : ' class="invisible"'); ?>>
-                    <div class="media-id-image" style="width:150px; height:150px; border:1px solid #eee;" title="Click to upload an image file"></div>
+                <div id="div-no-image">
+                    <div class="media-id-image dropzone" style="width:150px; height:150px; border:1px solid #eee;" title="Click to upload an image file"></div>
                 </div>
-                <div id="div-with-image"<?php echo ($model->isNewRecord ? ' class="invisible"' : ''); ?>>
+                <div id="div-with-image">
                     <img class="media-id-image" id="media-id-image" src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$model->file; ?>" alt="image" title="<?php echo $model->title.' ('.$model->width.'x'.$model->height.')'; ?>">
                     <div><strong><?php echo $model->title; ?></strong> - <?php echo $model->caption; ?></div>
                 </div>
@@ -45,3 +54,9 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<script>
+    var g_isNewRecord = <?php echo ($model->isNewRecord ? 'true' : 'false'); ?>;
+    var g_baseMediaUrl = '<?php echo $this->module->baseMediaUrl; ?>';
+    var g_imageThumbsDir' = '<?php echo $this->module->imageThumbsDir; ?>';
+</script>
