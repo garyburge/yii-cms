@@ -1,4 +1,5 @@
 <form id="file-upload-form" action="<?php echo $this->controller->createUrl('/cms/media/imageupload'); ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="image" value="image'>
     <div class="fallback">
         <input name="file" type="file" multiple />
     </div>
