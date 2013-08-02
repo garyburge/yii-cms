@@ -7,14 +7,6 @@ $(document).ready(function() {
         imageThumbsDir: g_imageThumbsDir
     }
 
-    // initialize dropzone on no-image div
-    $('#div-no-image').dropzone({
-        url: '/media/upload.html',
-        paramName: 'file',
-        maxFileSize: 2,
-        acceptedFiles: '.jpg, .png, .gif',
-    });
-    
     // set dropzone div, image div
     if (app.isNewRecord) {
         $('#div-no-image').show();
