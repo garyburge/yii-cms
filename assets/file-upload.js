@@ -18,32 +18,49 @@ $(document).ready(function() {
             this.on('success', function(file, data) {
                 // convert to json
                 var data = jQuery.parseJSON(data);
-                $.ajax({
-                    url: '/cms/media/imageupload',
-                    type: 'post',
-                    data: data._FILES,
-                    dataType: 'json',
-                }).fail(function(jqXHR, status, errorThrown) {
-                    alert("Error: "+jqXHR.responseText);
-                }).done(function(data, status, jqXHR) {
-                    if (data.bError) {
-                        var sErrors = '';
-                        $.each(data.aErrors, function(key, aErrors) {
-                            sErrors += "\n"+key+": ";
-                            $.each(aErrors, function(key, sMsg) {
-                                sErrors += ' '+sMsg;
-                            });
+                if (data.bError) {
+                    var sErrors = '';
+                    $.each(data.aErrors, function(key, aErrors) {
+                        sErrors += "\n"+key+": ";
+                        $.each(aErrors, function(key, sMsg) {
+                            sErrors += ' '+sMsg;
                         });
-                        alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
-                    } else {
-                        if (data.original_filel) {
-                            // set media.original_file tag
-                            $('#'+app.mediaOriginalFileId).val(data.original_file);
-                            // set media.file tag
-                            $('#'+app.mediaFileId).val(data.file);
-                        }
+                    });
+                    alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
+                } else {
+                    if (data.original_filel) {
+                        // set media.original_file tag
+                        $('#'+app.mediaOriginalFileId).val(data.original_file);
+                        // set media.file tag
+                        $('#'+app.mediaFileId).val(data.file);
                     }
-                });
+                }
+//                $.ajax({
+//                    url: '/cms/media/imageupload',
+//                    type: 'post',
+//                    data: data._FILES,
+//                    dataType: 'json',
+//                }).fail(function(jqXHR, status, errorThrown) {
+//                    alert("Error: "+jqXHR.responseText);
+//                }).done(function(data, status, jqXHR) {
+//                    if (data.bError) {
+//                        var sErrors = '';
+//                        $.each(data.aErrors, function(key, aErrors) {
+//                            sErrors += "\n"+key+": ";
+//                            $.each(aErrors, function(key, sMsg) {
+//                                sErrors += ' '+sMsg;
+//                            });
+//                        });
+//                        alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
+//                    } else {
+//                        if (data.original_filel) {
+//                            // set media.original_file tag
+//                            $('#'+app.mediaOriginalFileId).val(data.original_file);
+//                            // set media.file tag
+//                            $('#'+app.mediaFileId).val(data.file);
+//                        }
+//                    }
+//                });
             })
         }
     };
