@@ -39,7 +39,6 @@ class MediaController extends Controller
             'bError'=>false,
             'sMessage'=>'',
             'aErrors'=>false,
-            '_POST'=>'',
             '_FILES'=>'',
             'attributes'=>'',
             'cUploadedFile'=>'',
@@ -48,7 +47,6 @@ class MediaController extends Controller
             'resizedUrl'=>'',
             'media_id'=>0
         );
-        $aResult['_POST'] = print_r($_POST, true);
         $aResult['_FILES'] = print_r($_FILES, true);
 
         // create upload form
@@ -59,14 +57,14 @@ class MediaController extends Controller
             if (isset($_FILES['file'])) {
                 // copy to model attributes
                 $upload->attributes = $_FILES['file'];
-                $model->image = CUploadedFile::getInstance($upload, 'image');
+                $cUploadedFile = CUploadedFile::getInstance($upload, 'file');
 
                 // debug returns
                 $aResult['attributes'] .= print_r($upload->attributes, true);
                 $aResult['cUploadedFile'] .= print_r($cUploadedFile, true);
 
                 // validate
-                if (!$upload->save()) {
+                if (!$upload->validate()) {
                     $aResult['aErrors'] = $upload->errors;
                     throw new CException("An error occured during the attempted file transfer: ");
                 } else{

@@ -4,22 +4,14 @@
  * UploadForm class.
  *
  */
-class UploadForm extends CFormModel
+class UploadForm extends CActiveRecord
 {
-    public $file = 'file';
-    public $name;
-    public $type;
-    public $tmp_name;
-    public $error;
-    public $size;
-//    public $upload;
-//    public $media_id;
+    public $image = 'file';
 
     public function rules()
     {
         return array(
-            array('file', 'file', 'types'=>'jpg, png, gif'),
-            array('file, name, type, tmp_name, error, size', 'safe', 'on'=>'upload')
+            array('image', 'file', 'types'=>'jpg, png, gif'),
         );
     }
 }
