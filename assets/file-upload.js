@@ -13,24 +13,27 @@ $(document).ready(function() {
         maxFilesize: 2,
         acceptedFiles: '.jpg, .png, .gif',
         init: function() {
-            this.on('success', function(file, data) {
-                var data = jQuery.parseJSON(data);
-                if (data.bError) {
-                    var sErrors = '';
-                    $.each(data.aErrors, function(key, aErrors) {
-                        sErrors += "\n"+key+": ";
-                        $.each(aErrors, function(key, sMsg) {
-                            sErrors += ' '+sMsg;
-                        });
-                    });
-                    alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
-                } else {
-                    if (data.thumbUrl) {
-                        // set image tag src attribute
-                        $('#'+mediaFileId).attr('src', data.thumbUrl);
-                    }
-                }
-            })
+            this.on("addedfile", function(file) {
+                alert("Added file.");
+            });
+//            this.on('success', function(file, data) {
+//                var data = jQuery.parseJSON(data);
+//                if (data.bError) {
+//                    var sErrors = '';
+//                    $.each(data.aErrors, function(key, aErrors) {
+//                        sErrors += "\n"+key+": ";
+//                        $.each(aErrors, function(key, sMsg) {
+//                            sErrors += ' '+sMsg;
+//                        });
+//                    });
+//                    alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
+//                } else {
+//                    if (data.thumbUrl) {
+//                        // set image tag src attribute
+//                        $('#'+mediaFileId).attr('src', data.thumbUrl);
+//                    }
+//                }
+//            })
         }
     };
 

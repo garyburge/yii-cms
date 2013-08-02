@@ -27,7 +27,7 @@ class MediaController extends Controller
     {
         return array(
             array('allow',
-                'actions'=>array('index', 'view', 'create', 'update', 'delete'),
+                'actions'=>array('index', 'view', 'create', 'update', 'delete', 'imageUpload'),
                 'roles'=>$this->module->authRolesMedia
             ),
             array('deny', // deny all users
@@ -123,6 +123,14 @@ class MediaController extends Controller
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+    }
+
+    /**
+     * Handle uploaded image
+     */
+    public function actionImageUpload()
+    {
+        
     }
 
     /**
