@@ -58,9 +58,11 @@ class MediaController extends Controller
                 // copy to model attributes
                 $upload->attributes = $_FILES['file'];
                 $cUploadedFile = CUploadedFile::getInstance($upload, 'file');
-                $aResult['cUploadedFile'] = $cUploadedFile;
+
+                // debug returns
                 $aResult['attributes'] .= print_r($upload->attributes, true);
-                $aResult['attributes'] .= print_r($file, true);
+                $aResult['cUploadedFile'] .= print_r($cUploadedFile, true);
+
                 // validate
                 if (!$upload->validate()) {
                     $aResult['aErrors'] = $upload->errors;
@@ -102,7 +104,6 @@ class MediaController extends Controller
 
                     // return media id
                     $aResult['media_id'] = $model->id;
-
                 }
             }
         } catch (CException $e) {
