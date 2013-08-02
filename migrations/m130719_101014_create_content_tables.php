@@ -66,8 +66,8 @@ class m130719_101014_create_content_tables extends CDbMigration
         $this->createTable('media', array(
             'id'=>'pk',
             'media_type_id'=>'INTEGER NOT NULL',
-            'original_file_name'=>'VARCHAR(255) NOT NULL',
-            'file_name'=>'VARCHAR(255) NOT NULL',
+            'original_file'=>'VARCHAR(255) NOT NULL',
+            'file'=>'VARCHAR(255) NOT NULL',
             'title'=>'VARCHAR(255) NOT NULL',
             'caption'=>'TEXT NULL DEFAULT NULL',
             'attribution'=>'VARCHAR(255) NULL DEFAULT NULL',
@@ -78,8 +78,8 @@ class m130719_101014_create_content_tables extends CDbMigration
             'updated'=>'INTEGER NULL DEFAULT NULL',
         ), $this->sqlOptions);
         $this->createIndex('media_media_type_id', 'media', 'media_type_id', false);
-        $this->createIndex('media_original_file', 'media', 'original_file_name', false);
-        $this->createIndex('media_file', 'media', 'file_name', false);
+        $this->createIndex('media_original_file', 'media', 'original_file', false);
+        $this->createIndex('media_file', 'media', 'file', false);
         $this->createIndex('media_title', 'media', 'title', false);
         $this->createIndex('media_attribution', 'media', 'attribution', false);
         $this->createIndex('media_date', 'media', 'created, updated', false);
