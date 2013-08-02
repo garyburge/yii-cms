@@ -55,7 +55,8 @@
 <div id="file-upload-dialog" title="Upload File">
     <?php $this->widget('cms.widgets.CmsFileUpload', array(
         'imgTagId'=>'media-id-image',
-        'mediaFileId'=>'Media_original_file'
+        'mediaOriginalFileId'=>'Media_original_file',
+        'mediaFileId'=>'Media_file'
     )); ?>
 </div>
 
