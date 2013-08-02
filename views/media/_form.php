@@ -1,5 +1,5 @@
 <?php
-    $sql = "SELECT id, CONCAT(extension, ' (', name, ')') AS value FROM media_type ORDER BY extension"
+    $sql = "SELECT id, CONCAT(extension, ' (', name, ')') AS value FROM media_type ORDER BY extension";
     $aTypes = Yii::app()->createCommand($sql)->queryAll(true);
 ?>
 
