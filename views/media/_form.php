@@ -6,9 +6,6 @@
     // save assets url
     $assetsUrl = $this->module->assetsUrl;
 
-    // register required files
-    Yii::app()->clientScript->registerCssFile($assetsUrl.'/dropzone/css/dropzone.css');
-    Yii::app()->clientScript->registerScriptFile($assetsUrl.'/dropzone/dropzone.min.js', CClientScript::POS_END);
     Yii::app()->clientScript->registerScriptFile($assetsUrl.'/media-form.js', CClientScript::POS_END);
 ?>
 
@@ -24,7 +21,7 @@
         <li class="span4">
             <div class="thumbnail">
                 <div id="div-no-image">
-                    <div class="media-id-image" style="width:100%; height:150px; border:1px solid #eee;" title="Click to upload an image file"></div>
+                    <div class="media-id-image" style="width:150px; height:150px; border:1px solid #eee;" title="Click to upload an image file"></div>
                 </div>
                 <div id="div-with-image">
                     <img class="media-id-image" id="media-id-image" src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$model->file; ?>" alt="image" title="<?php echo $model->title.' ('.$model->width.'x'.$model->height.')'; ?>">
@@ -54,6 +51,10 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<div id="file-upload-dialog" title="Upload File">
+    <?php $this->widget('cms.widgets.CmsFileUpload', array()); ?>
+</div>
 
 <script>
     var g_isNewRecord = <?php echo ($model->isNewRecord ? 'true' : 'false'); ?>;
