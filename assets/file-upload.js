@@ -15,26 +15,8 @@ $(document).ready(function() {
         acceptedFiles: '.jpg, .png, .gif',
         init: function() {
             this.on('success', function(file, data) {
-                var data = jQuery.parseJSON(data);
-                if (data.bError) {
-                    var sErrors = '';
-                    $.each(data.aErrors, function(key, aErrors) {
-                        sErrors += "\n"+key+": ";
-                        $.each(aErrors, function(key, sMsg) {
-                            sErrors += ' '+sMsg;
-                        });
-                    });
-                    alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
-                } else {
-                    if (data.thumbUrl) {
-                        // set image tag src attribute
-                        $('#'+app.imgTagId).attr('src', data.thumbUrl);
-                        // set media.original_file tag
-                        $('#'+app.mediaOriginalFileId).val(data.original_file);
-                        // set media.file tag
-                        $('#'+app.mediaFileId).val(data.file);
-                    }
-                }
+                // submit the form
+                $('#file-upload-form').submit();
             })
         }
     };
@@ -58,9 +40,38 @@ $(document).ready(function() {
     // bind to file upload form submission
     $('#file-upload-form').on('submit', function(e) {
         e.stopPropagation();
+        $.ajax({
+            url: '/cms/media/imageupload',
+            type: 'post',
+            dataType: 'json',
+        }).fail(function(jqXHR, status, errorThrown) {
+            alert("Error: "+jqXHR.responseText);
+        }).done(function(data, status, jqXHR) {
+            var data = jQuery.parseJSON(data);
+            if (data.bError) {
+                var sErrors = '';
+                $.each(data.aErrors, function(key, aErrors) {
+                    sErrors += "\n"+key+": ";
+                    $.each(aErrors, function(key, sMsg) {
+                        sErrors += ' '+sMsg;
+                    });
+                });
+                alert("An error occurred during the file upload:\n\n"+data.sMessage+sErrors);
+            } else {
+                if (data.thumbUrl) {
+                    // set image tag src attribute
+                    $('#'+app.imgTagId).attr('src', data.thumbUrl);
+                    // set media.original_file tag
+                    $('#'+app.mediaOriginalFileId).val(data.original_file);
+                    // set media.file tag
+                    $('#'+app.mediaFileId).val(data.file);
+                }
+            }
+        });
         return false;
     })
 
     // get dropzone to attach itself to the form
     $('#file-upload-form').addClass('dropzone');
+
 });

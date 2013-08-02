@@ -134,12 +134,17 @@ class MediaController extends Controller
             'bError'=>false,
             'sMessage'=>'',
             'aErrors'=>false,
+            '_FILES'=>false,
             'cUploadedFile'=>false,
             'thumbUrl'=>'',
             'original_file'=>'',
             'file'=>''
         );
 
+        if (isset($_FILES)) {
+            $aResult['__FILES'] = print_r($_FILES, true);
+        }
+        
         if (isset($_POST['image'])) {
             // create model
             $model = new UploadForm;
