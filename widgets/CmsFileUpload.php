@@ -25,7 +25,11 @@ class CmsFileUpload extends CWidget
     public function run()
     {
         // output form
-        $this->render('file-upload-form', array('imgTagId'=>$this->imgTagId, 'mediaFileId'=>$this->mediaFileId));
+        $this->render('file-upload-form', array(
+            'imgTagId'=>$this->imgTagId,
+            'mediaOriginalFileId'=>$this->mediaOriginalFileId,
+            'mediaFileId'=>$this->mediaFileId
+        ));
     }
 
 }
