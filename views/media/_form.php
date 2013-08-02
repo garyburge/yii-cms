@@ -1,6 +1,6 @@
 <?php
     $sql = "SELECT id, CONCAT(extension, ' (', name, ')') AS value FROM media_type ORDER BY extension";
-    $aTypes = Yii::app()->createCommand($sql)->queryAll(true);
+    $aTypes = Yii::app()->db->createCommand($sql)->queryAll(true);
 ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
