@@ -43,7 +43,7 @@ $(document).ready(function() {
     });
 
     // bind to media image tag
-    $('#'+app.imgTagId).on('click', function(e) {
+    $('.'+app.imgTagId).on('click', function(e) {
         e.stopPropagation();
         // open file upload dialog
         $("#file-upload-dialog").dialog('open');
