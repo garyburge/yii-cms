@@ -47,7 +47,6 @@ $(document).ready(function() {
         }).fail(function(jqXHR, status, errorThrown) {
             alert("Error: "+jqXHR.responseText);
         }).done(function(data, status, jqXHR) {
-            var data = jQuery.parseJSON(data);
             if (data.bError) {
                 var sErrors = '';
                 $.each(data.aErrors, function(key, aErrors) {

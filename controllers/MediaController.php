@@ -142,9 +142,9 @@ class MediaController extends Controller
         );
 
         if (isset($_FILES)) {
-            $aResult['__FILES'] = print_r($_FILES, true);
+            $aResult['_FILES'] = print_r($_FILES, true);
         }
-        
+
         if (isset($_POST['image'])) {
             // create model
             $model = new UploadForm;
