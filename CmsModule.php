@@ -31,6 +31,12 @@ class CmsModule extends CWebModule
     public $imageMaxHeight = 600;
 
     /**
+     * Url to published CMS assets
+     * @var string the url to the published assets
+     */
+    protected $_assetsUrl = false;
+
+    /**
      * Initialize module
      *
      * @return void
@@ -46,6 +52,17 @@ class CmsModule extends CWebModule
 
         // set paths
         $this->baseMediaPath = dirname(__FILE__).$this->baseMediaPath;
+
+        // publish cms assets
+        $this->publishAssets();
 	}
 
+    public function publishAssets()
+    {
+        // if not published
+        if (!$this->_assetsUrl) {
+			$assetsPath = Yii::getPathOfAlias('cms.assets');
+			$this->_assetsUrl = Yii::app()->assetManager->publish($assetsPath, false, -1, $this->forceCopyAssets);
+        }
+    }
 }

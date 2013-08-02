@@ -22,7 +22,7 @@ $(document).ready(function() {
                 } else {
                     if (data.url) {
                         // set image tag src attribute
-                        $('#media-id-image').attr('src', data.url);
+                        $('#media-id-image').attr('src', data.thumbUrl);
                         // set media id hidden tag
                         $('#media_id').val(datal.media_id);
                     }
