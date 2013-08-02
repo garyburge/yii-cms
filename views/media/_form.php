@@ -18,7 +18,7 @@
                     <div class="media-id-image" style="width:150px; height:150px; border:1px solid #eee;" title="Click to upload an image file"></div>
                 </div>
                 <div id="div-with-image"<?php echo ($model->isNewRecord ? ' class="invisible"' : ''); ?>>
-                    <img class="media-id-image" id="media-id-image" src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$model->file_name; ?>" alt="image" title="<?php echo $model->title.' ('.$model->media->width.'x'.$model->media->height.')'; ?>">
+                    <img class="media-id-image" id="media-id-image" src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$model->file; ?>" alt="image" title="<?php echo $model->title.' ('.$model->media->width.'x'.$model->media->height.')'; ?>">
                     <div><strong><?php echo $model->media->title; ?></strong> - <?php echo $model->media->caption; ?></div>
                 </div>
             </div>
