@@ -18,14 +18,10 @@ $(document).ready(function() {
             this.on('success', function(file, data) {
                 // convert to json
                 var data = jQuery.parseJSON(data);
-//                // save the file structure
-//                app.image = data._FILES
-//                // submit the form
-//                $('#file-upload-form').submit();
                 $.ajax({
                     url: '/cms/media/imageupload',
                     type: 'post',
-                    data: data._FILES,
+                    data: {image: 'image'},
                     dataType: 'json',
                 }).fail(function(jqXHR, status, errorThrown) {
                     alert("Error: "+jqXHR.responseText);

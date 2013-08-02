@@ -136,6 +136,7 @@ class MediaController extends Controller
             'aErrors'=>false,
             '_FILES'=>false,
             '_POST'=>false,
+            'attributes'=>false,
             'cUploadedFile'=>false,
             'thumbUrl'=>'',
             'original_file'=>'',
@@ -148,12 +149,13 @@ class MediaController extends Controller
 
         if (isset($_POST['image'])) {
             $aResult['_POST'] = print_r($_POST, true);
-            
+
             // create model
             $model = new UploadForm;
 
             // copy to form data to model
             $model->attributes = $_POST['image'];
+            $aResult['attributes'] = print_r($model->attributes, true);
 
             // create uploaded file object
             $model->image = CUploadedFile::getInstance($model, 'image');
