@@ -134,26 +134,25 @@ class MediaController extends Controller
             'bError'=>false,
             'sMessage'=>'',
             'aErrors'=>false,
-            '_FILES'=>false,
             'original_file'=>'',
             'file'=>'',
             'thumb_url'=>'',
             'cropped_width'=>'',
             'cropped_height'=>'',
-            'cropped_size'=>''
+            'cropped_size'=>'',
+            'media_type_id'=>0,
         );
 
         if (isset($_FILES)) {
-            $aJson['_FILES'] = print_r($_FILES, true);
 
-            // save original file size
+            // save original file name
             $original_file = $_FILES['image']['name'];
             $aJson['original_file'] = $original_file;
 
             // get extension
             $aParts = pathinfo($original_file);
 
-            // create file name
+            // create file name and save it
             $file = md5($original_file.time()).'.'.$aParts['extension'];
             $aJson['file'] = $file;
 
@@ -201,6 +200,7 @@ class MediaController extends Controller
             // return them
             $aJson['cropped_width'] = $width;
             $aJson['cropped_height'] = $height;
+            $aJason['media_type_id'] = $aDim[2];
 
 
             // are cropped file dimensions larger than thumbnail dimensions?
