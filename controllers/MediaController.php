@@ -167,7 +167,7 @@ class MediaController extends Controller
             move_uploaded_file($_FILES['image']['tmp_name'], $original_file_path);
 
             // create thumbnail
-            $image = Yii::app()->wideimage($original_file_path);
+            $image = Yii::app()->wideimage->load($original_file_path);
 
             // thumbnail path
             $thumb_path = $this->module->baseMediaPath.'/'.
