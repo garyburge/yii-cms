@@ -37,11 +37,11 @@
     <?php echo $form->textAreaRow($model,'caption',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
     <?php echo $form->textFieldRow($model,'attribution',array('class'=>'span5','maxlength'=>255)); ?>
     <?php echo $form->textFieldRow($model,'copyright',array('class'=>'span5','maxlength'=>255)); ?>
-    <?php echo $form->textFieldRow($model,'height',array('class'=>'span5', 'disabled'=>true)); ?>
-    <?php echo $form->textFieldRow($model,'width',array('class'=>'span5', 'disabled'=>true)); ?>
-    <?php echo $form->textFieldRow($model,'size',array('class'=>'span5', 'disabled'=>true)); ?>
-    <?php //echo $form->textFieldRow($model,'created',array('class'=>'span5', 'disabled'=>true)); ?>
-    <?php //echo $form->textFieldRow($model,'updated',array('class'=>'span5', 'disabled'=>true)); ?>
+    <?php echo $form->textFieldRow($model,'height',array('class'=>'span4 disabled', 'readonly'=>true)); ?>
+    <?php echo $form->textFieldRow($model,'width',array('class'=>'span4 disabled', 'readonly'=>true)); ?>
+    <?php echo $form->textFieldRow($model,'size',array('class'=>'span4 disabled', 'readonly'=>true)); ?>
+    <?php //echo $form->textFieldRow($model,'created',array('class'=>'span4 disabled', 'readonly'=>true)); ?>
+    <?php //echo $form->textFieldRow($model,'updated',array('class'=>'span4 disabled', 'readonly'=>true)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
