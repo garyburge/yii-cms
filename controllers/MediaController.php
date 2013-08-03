@@ -184,8 +184,9 @@ class MediaController extends Controller
             // validate, compared to thumbnail sizes
             if ($width > $this->module->imageThumbWidth && $height > $this->module->imageThumbHeight) {
                 // calculate center of crop
-                $topOffset = (int)(($height/2) - ($this->module->imageThumbHeight/2));
-                $leftOffset = (int)($width/2) - ($this->module->imageThumbWidth/2);
+                //$topOffset = (int)(($height/2) - ($this->module->imageThumbHeight/2));
+                //$leftOffset = (int)($width/2) - ($this->module->imageThumbWidth/2);
+                Yii::trace(__METHOD__ . " (" . __LINE__ . "): crop/adaptive with width:".$this->module->imageThumbWidth." height:".$this->module->imageThumbHeight, 'user');
                 $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, 'center', 'center')
                       ->adaptive($this->module->imageThumbWidth, $this->module->imageThumbHeight, false);
             }
