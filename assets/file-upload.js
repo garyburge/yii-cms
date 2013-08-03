@@ -7,7 +7,7 @@ $(document).ready(function() {
         mediaOriginalFileId: g_mediaOriginalFileId,
         mediaFileId: g_mediaFileId,
         mediaHeightId: g_mediaHeightId,
-        mediaWidthId: g_mediaWidthId.
+        mediaWidthId: g_mediaWidthId,
         mediaSizeId: g_mediaSizeId
     };
 
