@@ -28,7 +28,6 @@
 	<?php echo CHtml::encode($data->attribution); ?>
 	<br />
 
-	<?php
 	<b><?php echo CHtml::encode($data->getAttributeLabel('copyright')); ?>:</b>
 	<?php echo CHtml::encode($data->copyright); ?>
 	<br />
