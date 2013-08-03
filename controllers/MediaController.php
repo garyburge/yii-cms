@@ -201,7 +201,7 @@ class MediaController extends Controller
             // return them
             $aJson['cropped_width'] = $width;
             $aJson['cropped_height'] = $height;
-            $aJason['media_type_id'] = $aDim[2];
+            $aJson['media_type_id'] = $aDim[2];
 
 
             // are cropped file dimensions larger than thumbnail dimensions?
