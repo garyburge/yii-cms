@@ -201,7 +201,7 @@ class MediaController extends Controller
                             $file;
 
             // resize
-            $image->addaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true);
+            $image->adaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true);
 
             // save size, dimensions
             $aJson['cropped_width'] = $image->width;
