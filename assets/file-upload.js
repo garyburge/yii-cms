@@ -7,8 +7,8 @@ $(document).ready(function() {
         mediaOriginalFileId: g_mediaOriginalFileId,
         mediaFileId: g_mediaFileId,
         mediaHeightId: g_mediaHeightId,
-        mediaWidthId: g_mediaWidthId,
-        image: null
+        mediaWidthId: g_mediaWidthId.
+        mediaSizeId: g_mediaSizeId
     };
 
     // set some dropzone options
@@ -16,7 +16,6 @@ $(document).ready(function() {
         paramName: "image",
         maxFilesize: 2,
         acceptedFiles: '.jpg, .png, .gif',
-        //createImageThumbnails: true,
         init: function() {
             this.on('success', function(file, data) {
                 // convert to json
@@ -38,6 +37,7 @@ $(document).ready(function() {
                     // set media height, width
                     $('#'+app.mediaHeightId).val(data.cropped_height);
                     $('#'+app.mediaWidthId).val(data.cropped_width);
+                    $('#'+app.mediaSizeId).val(data.cropped_size);
                     // set image tage src attribute
                     $('#'+app.imgTagId).attr('src', data.thumb_url);
                     // show image div, hide dropzone div

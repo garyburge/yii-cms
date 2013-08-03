@@ -6,4 +6,5 @@
     var g_mediaFileId = '<?php echo $mediaFileId; ?>';
     var g_mediaHeightId = '<?php echo $mediaHeightId; ?>';
     var g_mediaWidthId = '<?php echo $mediaWidthId; ?>';
+    var g_mediaSizeId = '<?php echo $mediaSizeId; ?>';
 </script>

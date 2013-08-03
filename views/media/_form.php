@@ -57,7 +57,8 @@
     <?php $this->widget('cms.widgets.CmsFileUpload', array(
         'imgTagId'=>'media-id-image',
         'mediaOriginalFileId'=>'Media_original_file',
-        'mediaFileId'=>'Media_file'
+        'mediaFileId'=>'Media_file',
+        'mediaSizeId'=>'Media_size'
     )); ?>
 </div>
 

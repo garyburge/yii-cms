@@ -32,7 +32,8 @@ class CmsFileUpload extends CWidget
             'mediaOriginalFileId'=>$this->mediaOriginalFileId,
             'mediaFileId'=>$this->mediaFileId,
             'mediaHeightId'=>$this->mediaHeightId,
-            'mediaWidthId'=>$this->mediaWidthId
+            'mediaWidthId'=>$this->mediaWidthId,
+            'mediaSizeId'=>$this->mediaSizeId
         ));
     }
 
