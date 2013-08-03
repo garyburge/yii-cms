@@ -38,6 +38,21 @@ class Media extends CActiveRecord
 		return 'media';
 	}
 
+    /**
+     * Return list of behaviors for this model
+     * @return array array of behavior definitions
+     */
+    public function behaviors(){
+        return array(
+            'CTimestampBehavior' => array(
+                'class'=>'zii.behaviors.CTimestampBehavior',
+                'timestampExpression'=>'time()',
+                'createAttribute'=>'created',
+                'updateAttribute'=>'updated',
+            )
+        );
+    }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
