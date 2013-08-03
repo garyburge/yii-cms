@@ -34,6 +34,9 @@ $(document).ready(function() {
                     // set media.file tag
                     $('#'+app.mediaFileId).val(data.file);
                 }
+            });
+            this.on('thumbnail', function(file, dataUrl) {
+                var a = 1;
             })
         }
     };
