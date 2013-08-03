@@ -99,23 +99,132 @@ class m130719_101014_create_content_tables extends CDbMigration
 
         // insert media type data
         $this->insert('media_type', array(
+            'id'=>IMAGETYPE_GIF,
             'extension'=>'gif',
             'name'=>'image',
             'type'=>'image/gif',
             'description'=>'gif image file',
         ));
         $this->insert('media_type', array(
+            'id'=>IMAGETYPE_JPEG,
             'extension'=>'jpg',
             'name'=>'image',
             'type'=>'image/jpeg',
             'description'=>'jpg image file',
         ));
         $this->insert('media_type', array(
+            'id'=>IMAGETYPE_JPEG2000,
+            'extension'=>'jpc',
+            'name'=>'image',
+            'type'=>'image/jpeg',
+            'description'=>'jpg image file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_PNG,
             'extension'=>'png',
             'name'=>'image',
-            'type'=>'image/[mg',
+            'type'=>'image/png',
             'description'=>'[mg image file',
         ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_SWF,
+            'extension'=>'swf',
+            'name'=>'flash',
+            'type'=>'application/x-shockwave',
+            'description'=>'flash shockwave file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_PSD,
+            'extension'=>'psd',
+            'name'=>'photoshop',
+            'type'=>'application/x-photoshop',
+            'description'=>'photoshop file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_BMP,
+            'extension'=>'bmp',
+            'name'=>'bitmap',
+            'type'=>'image/bmpp',
+            'description'=>'bitmap file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_WBMP,
+            'extension'=>'bmp',
+            'name'=>'bitmap',
+            'type'=>'image/vnd.wap.wbmp',
+            'description'=>'bitmap file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_XBM,
+            'extension'=>'xmp',
+            'name'=>'bitmap',
+            'type'=>'image/x-xbitmap',
+            'description'=>'bitmap file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_TIFF_II,
+            'extension'=>'tiff',
+            'name'=>'tiff',
+            'type'=>'image/tiff',
+            'description'=>'tiff file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_TIFF_MM,
+            'extension'=>'tiff',
+            'name'=>'tiff',
+            'type'=>'image/tiff',
+            'description'=>'tiff file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_IFF,
+            'extension'=>'iff',
+            'name'=>'iff',
+            'type'=>'image/iff',
+            'description'=>'iff file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_JB2,
+            'extension'=>'jb2',
+            'name'=>'jb2',
+            'type'=>'image/jbig2',
+            'description'=>'omnipage jb2 file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_JPC,
+            'extension'=>'jpc',
+            'name'=>'jpc',
+            'type'=>'image/jpc',
+            'description'=>'jpc file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_JP2,
+            'extension'=>'jp2',
+            'name'=>'jp2',
+            'type'=>'image/jp2',
+            'description'=>'jp2 file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_JPX,
+            'extension'=>'jpx',
+            'name'=>'jpx',
+            'type'=>'image/jpx',
+            'description'=>'jpx file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_SWC,
+            'extension'=>'swc',
+            'name'=>'swc',
+            'type'=>'application/x-swc',
+            'description'=>'shockwave component file',
+        ));
+        $this->insert('media_type', array(
+            'id'=>IMAGETYPE_ICO,
+            'extension'=>'ico',
+            'name'=>'icon',
+            'type'=>'image/x-icon',
+            'description'=>'icon file',
+        ));
+
         $this->insert('media_type', array(
             'extension'=>'mp4',
             'name'=>'audio',
