@@ -22,7 +22,7 @@ class CmsModule extends CWebModule
     public $imageOriginalDir = 'original';
     public $imageThumbsDir = 'thumb';
     public $baseMediaPath = '/../../../assets/media';
-    public $baseMediaUrl = 'assets/media';
+    public $baseMediaUrl = '/assets/media';
 
     // image sizes
     public $imageThumbWidth = 150;
