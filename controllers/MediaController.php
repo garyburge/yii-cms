@@ -152,9 +152,15 @@ class MediaController extends Controller
             $file = md5($original_file.time()).'.'.$aParts['extension'];
             $aResult['file'] = $file;
 
+            // create original file path
             $original_file_path = $this->module->baseMediaPath.'/'.
                                   $this->module->imageOriginalDir.'/'.
                                   $file;
+
+            // return thumbnail path
+            $aRequest['thumb_url'] = $this->module->baseMediaUrl.'/'.
+                                     $this->module->imageThumbsDir.'/'.
+                                     $file;
 
             // copy tmp file to original file location
             move_uploaded_file($_FILES['image']['tmp_name'], $original_file_path);
@@ -179,7 +185,10 @@ class MediaController extends Controller
                 $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, $topOffset, $leftOffset);
             }
 
-            // save cropped image
+            // save thumbnail image
+            $image->save($thumb_path);
+
+            // create cropped image
             $image = Yii::app()->wideimage($original_file_path);
 
             // cropped path

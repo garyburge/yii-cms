@@ -33,6 +33,13 @@ $(document).ready(function() {
                     $('#'+app.mediaOriginalFileId).val(data.original_file);
                     // set media.file tag
                     $('#'+app.mediaFileId).val(data.file);
+                    // set image tage src attribute
+                    $('#'+app.imgTagId).attr('src', data.thumb_url);
+                    // show image div, hide dropzone div
+                    $('#div-with-image').show();
+                    $('#div-no-image').hide();
+                    // close dialog
+                    $("#file-upload-dialog").dialog('close');
                 }
             });
             this.on('thumbnail', function(file, dataUrl) {
