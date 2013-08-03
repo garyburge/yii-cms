@@ -1,6 +1,6 @@
   <li class="span4">
-    <a href="<?php echo $this->module->mediaBaseUrl.'/'.$data->file; ?>" class="thumbnail">
-      <img data-src="<?php echo $this->module->mediaBaseUrl.'/'.$this->module->mediaThumbDir.'/'.$data->file; ?>" alt="">
+    <a href="<?php echo $this->module->baseMediaUrl.'/'.$data->file; ?>" class="thumbnail">
+      <img data-src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->mediaThumbDir.'/'.$data->file; ?>" alt="">
     </a>
   </li>
 
