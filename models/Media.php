@@ -46,7 +46,7 @@ class Media extends CActiveRecord
         return array(
             'CTimestampBehavior' => array(
                 'class'=>'zii.behaviors.CTimestampBehavior',
-                'timestampExpression'=>'time()',
+                //'timestampExpression'=>'time()',
                 'createAttribute'=>'created',
                 'updateAttribute'=>'updated',
             )
