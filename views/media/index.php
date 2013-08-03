@@ -10,7 +10,9 @@ $this->menu=array(
 
 <h1>Media Library</h1>
 
+<ul class="thumbnails">
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>
+</ul>
