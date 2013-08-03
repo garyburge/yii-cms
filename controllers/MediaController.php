@@ -192,6 +192,7 @@ class MediaController extends Controller
 
             // get dimensions of the cropped file
             $aDim = getimagesize($cropped_path);
+            $aJson['aDim'] = print_r($aDim, true);
 
             // save width, height
             $width = $aDim[0];
