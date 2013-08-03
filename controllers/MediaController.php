@@ -190,7 +190,7 @@ class MediaController extends Controller
             $image->save($thumb_path);
 
             // create cropped image
-            $image = Yii::app()->wideimage($original_file_path);
+            $image = Yii::app()->wideimage->load($original_file_path);
 
             // cropped path
             $cropped_path = $this->module->baseMediaPath.'/'.
