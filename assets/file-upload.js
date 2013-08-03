@@ -14,7 +14,7 @@ $(document).ready(function() {
         paramName: "image",
         maxFilesize: 2,
         acceptedFiles: '.jpg, .png, .gif',
-        createImageThumbnaile: true,
+        createImageThumbnails: true,
         init: function() {
             this.on('success', function(file, data) {
                 // convert to json
