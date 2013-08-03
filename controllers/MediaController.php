@@ -206,7 +206,7 @@ class MediaController extends Controller
             // are cropped file dimensions larger than thumbnail dimensions?
             if ($width > $this->module->imageThumbWidth || $height > $this->module->imageThumbHeight) {
                 // calculate center of crop
-                $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, 'center')->
+                $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, 'center')
                       ->save($thumb_path);
             } else {
                 // save without cropping
