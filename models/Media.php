@@ -14,6 +14,7 @@
  * @property string $copyright
  * @property integer $height
  * @property integer $width
+ * @property integer $size
  * @property integer $created
  * @property integer $updated
  */
@@ -46,12 +47,12 @@ class Media extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('media_type_id, original_file, file, title', 'required'),
-			array('media_type_id, height, width, created, updated', 'numerical', 'integerOnly'=>true),
+			array('media_type_id, height, width, size, created, updated', 'numerical', 'integerOnly'=>true),
 			array('original_file, file, title, attribution, copyright', 'length', 'max'=>255),
 			array('caption', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, media_type_id, original_file, file, title, caption, attribution, copyright, height, width, created, updated', 'safe', 'on'=>'search'),
+			array('id, media_type_id, original_file, file, title, caption, attribution, copyright, height, width, size, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +83,7 @@ class Media extends CActiveRecord
 			'copyright' => 'Copyright',
 			'height' => 'Height',
 			'width' => 'Width',
+			'size' => 'Size',
 			'created' => 'Created',
 			'updated' => 'Updated',
 		);
@@ -108,6 +110,7 @@ class Media extends CActiveRecord
 		$criteria->compare('copyright',$this->copyright,true);
 		$criteria->compare('height',$this->height);
 		$criteria->compare('width',$this->width);
+		$criteria->compare('size',$this->size);
 		$criteria->compare('created',$this->created);
 		$criteria->compare('updated',$this->updated);
 
