@@ -136,7 +136,8 @@ class MediaController extends Controller
             'aErrors'=>false,
             '_FILES'=>false,
             'original_file'=>'',
-            'file'=>''
+            'file'=>'',
+            'thumb_url'=>''
         );
 
         if (isset($_FILES)) {
