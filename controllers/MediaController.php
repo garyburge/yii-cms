@@ -196,7 +196,6 @@ class MediaController extends Controller
 
             // cropped path
             $cropped_path = $this->module->baseMediaPath.'/'.
-                            $this->module->imageThumbsDir.'/'.
                             $file;
 
             // create cropped image
