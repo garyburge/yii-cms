@@ -4,4 +4,6 @@
     var g_imgTagId = '<?php echo $imgTagId; ?>';
     var g_mediaOriginalFileId = '<?php echo $mediaOriginalFileId; ?>';
     var g_mediaFileId = '<?php echo $mediaFileId; ?>';
+    var g_mediaHeightId = '<?php echo $mediaHeightId; ?>';
+    var g_mediaWidthId = '<?php echo $mediaWidthId; ?>';
 </script>

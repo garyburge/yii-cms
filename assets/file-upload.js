@@ -6,6 +6,8 @@ $(document).ready(function() {
         imgTagId: g_imgTagId,
         mediaOriginalFileId: g_mediaOriginalFileId,
         mediaFileId: g_mediaFileId,
+        mediaHeightId: g_mediaHeightId,
+        mediaWidthId: g_mediaWidthId,
         image: null
     };
 

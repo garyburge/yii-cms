@@ -30,7 +30,9 @@ class CmsFileUpload extends CWidget
         $this->render('file-upload-form', array(
             'imgTagId'=>$this->imgTagId,
             'mediaOriginalFileId'=>$this->mediaOriginalFileId,
-            'mediaFileId'=>$this->mediaFileId
+            'mediaFileId'=>$this->mediaFileId,
+            'mediaHeightId'=>$this->mediaHeightId,
+            'mediaWidthId'=>$this->mediaWidthId
         ));
     }
 
