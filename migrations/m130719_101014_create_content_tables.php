@@ -112,13 +112,14 @@ class m130719_101014_create_content_tables extends CDbMigration
             'type'=>'image/jpeg',
             'description'=>'jpg image file',
         ));
-        $this->insert('media_type', array(
-            'id'=>IMAGETYPE_JPEG2000,
-            'extension'=>'jpc',
-            'name'=>'image',
-            'type'=>'image/jpeg',
-            'description'=>'jpg image file',
-        ));
+        // same as IMAGETYPE_JPC
+//        $this->insert('media_type', array(
+//            'id'=>IMAGETYPE_JPEG2000,
+//            'extension'=>'jpc',
+//            'name'=>'image',
+//            'type'=>'image/jpeg',
+//            'description'=>'jpg image file',
+//        ));
         $this->insert('media_type', array(
             'id'=>IMAGETYPE_PNG,
             'extension'=>'png',
