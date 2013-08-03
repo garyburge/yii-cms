@@ -33,6 +33,9 @@ $(document).ready(function() {
                     $('#'+app.mediaOriginalFileId).val(data.original_file);
                     // set media.file tag
                     $('#'+app.mediaFileId).val(data.file);
+                    // set media height, width
+                    $('#'+app.mediaHeightId).val(data.cropped_height);
+                    $('#'+app.mediaWidthId).val(data.cropped_width);
                     // set image tage src attribute
                     $('#'+app.imgTagId).attr('src', data.thumb_url);
                     // show image div, hide dropzone div

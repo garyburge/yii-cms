@@ -137,7 +137,10 @@ class MediaController extends Controller
             '_FILES'=>false,
             'original_file'=>'',
             'file'=>'',
-            'thumb_url'=>''
+            'thumb_url'=>'',
+            'cropped_width'=>'',
+            'cropped_height'=>'',
+            'cropped_size'=>''
         );
 
         if (isset($_FILES)) {
@@ -175,8 +178,8 @@ class MediaController extends Controller
                           $file;
 
             // get width, height
-            $width = $image->get('width');
-            $height = $image->get('height');
+            $width = $image->width;
+            $height = $image->height;
 
             // validate, compared to thumbnail sizes
             if ($width > $this->module->imageThumbWidth && $height > $this->module->imageThumbHeight) {
@@ -198,8 +201,17 @@ class MediaController extends Controller
                             $file;
 
             // resize
-            $image->addaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true)
-                  ->save($cropped_path);
+            $image->addaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true);
+
+            // save size, dimensions
+            $aJson['cropped_width'] = $image->width;
+            $aJson['cropped_height'] = $image->height;
+
+            // finally...save it
+            $image->save($cropped_path);
+
+            // then return size of the cropped image file
+            $aJson['cropped_size'] = filesize($cropped_path);
 
         }
 

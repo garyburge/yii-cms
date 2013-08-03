@@ -5,6 +5,8 @@ class CmsFileUpload extends CWidget
     public $imgTagId = 'media-id-image';
     public $mediaOriginalFileId = 'Media_original_file';
     public $mediaFileId = 'Media_file';
+    public $mediaHeightId = 'Media_height';
+    public $mediaWidthId = 'Media_width';
 
     public function init()
     {
