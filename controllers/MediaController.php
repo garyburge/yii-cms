@@ -169,6 +169,11 @@ class MediaController extends Controller
             // copy tmp file to original file location
             move_uploaded_file($_FILES['image']['tmp_name'], $original_file_path);
 
+            // thumbnail path
+            $thumb_path = $this->module->baseMediaPath.'/'.
+                          $this->module->imageThumbsDir.'/'.
+                          $file;
+
             // create thumbnail
             $image = Yii::app()->wideimage->load($original_file_path);
 
@@ -177,31 +182,25 @@ class MediaController extends Controller
             $height = $image->height;
 
             // validate, compared to thumbnail sizes
-            if ($width > $this->module->imageThumbWidth && $height > $this->module->imageThumbHeight) {
+            if ($width > $this->module->imageThumbWidth || $height > $this->module->imageThumbHeight) {
                 // calculate center of crop
                 //$topOffset = (int)(($height/2) - ($this->module->imageThumbHeight/2));
                 //$leftOffset = (int)($width/2) - ($this->module->imageThumbWidth/2);
                 //Yii::trace(__METHOD__ . " (" . __LINE__ . "): crop/adaptive with width:".$this->module->imageThumbWidth." height:".$this->module->imageThumbHeight, 'user');
                 //$image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight);
-                $image->crop(100, 100, 'center');
-                       //->adaptive($this->module->imageThumbWidth, $this->module->imageThumbHeight, false);
+                $image->crop(100, 100, 'center')->save($thumb_path)
+            } else {
+                // save without cropping
+                $image->save($thumb_path);
             }
-
-            // thumbnail path
-            $thumb_path = $this->module->baseMediaPath.'/'.
-                          $this->module->imageThumbsDir.'/'.
-                          $file;
-
-            // save thumbnail image
-            $image->save($thumb_path);
-
-            // create cropped image
-            $image = Yii::app()->wideimage->load($original_file_path);
 
             // cropped path
             $cropped_path = $this->module->baseMediaPath.'/'.
                             $this->module->imageThumbsDir.'/'.
                             $file;
+
+            // create cropped image
+            $image->load($original_file_path);
 
             // resize
             $image->adaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true);
