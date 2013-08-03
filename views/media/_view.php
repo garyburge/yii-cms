@@ -28,7 +28,7 @@
 	<?php echo CHtml::encode($data->attribution); ?>
 	<br />
 
-	<?php /*
+	<?php
 	<b><?php echo CHtml::encode($data->getAttributeLabel('copyright')); ?>:</b>
 	<?php echo CHtml::encode($data->copyright); ?>
 	<br />
@@ -41,6 +41,10 @@
 	<?php echo CHtml::encode($data->width); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('size')); ?>:</b>
+	<?php echo CHtml::encode($data->size); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('created')); ?>:</b>
 	<?php echo CHtml::encode($data->created); ?>
 	<br />
@@ -48,7 +52,5 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('updated')); ?>:</b>
 	<?php echo CHtml::encode($data->updated); ?>
 	<br />
-
-	*/ ?>
 
 </div>

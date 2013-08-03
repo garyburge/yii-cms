@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Media #<?php echo $model->id; ?></h1>
+<h1>View Media</h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
@@ -28,6 +28,7 @@ $this->menu=array(
 		'copyright',
 		'height',
 		'width',
+		'size',
 		'created',
 		'updated',
 	),
