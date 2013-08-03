@@ -158,6 +158,39 @@ class MediaController extends Controller
 
             // copy tmp file to original file location
             move_uploaded_file($_FILES['image']['tmp_name'], $original_file_path);
+
+            // create thumbnail
+            $image = Yii::app()->wideimage($original_file_path);
+
+            // thumbnail path
+            $thumb_path = $this->module->baseMediaPath.'/'.
+                          $this->module->imageThumbsDir.'/'.
+                          $file;
+
+            // get width, height
+            $width = $image->get('width');
+            $height = $image->get('height');
+
+            // validate, compared to thumbnail sizes
+            if ($width > $this->module->imageThumbWidth && $height > $this->module->imageThumbHeight) {
+                // calculate center of crop
+                $topOffset = (int)(($height/2) - ($this->module->imageThumbHeight/2));
+                $leftOffset = (int)($width/2) - ($this->module->imageThumbWidth/2);
+                $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, $topOffset, $leftOffset);
+            }
+
+            // save cropped image
+            $image = Yii::app()->wideimage($original_file_path);
+
+            // cropped path
+            $cropped_path = $this->module->baseMediaPath.'/'.
+                            $this->module->imageThumbsDir.'/'.
+                            $file;
+
+            // resize
+            $image->addaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true)
+                  ->save($cropped_path);
+
         }
 
         // return data
