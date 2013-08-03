@@ -153,6 +153,7 @@ class MediaController extends Controller
             // get extension
             $aParts = pathinfo($original_file);
 
+            // create file name
             $file = md5($original_file.time()).'.'.$aParts['extension'];
             $aJson['file'] = $file;
 
@@ -161,7 +162,16 @@ class MediaController extends Controller
                                   $this->module->imageOriginalDir.'/'.
                                   $file;
 
-            // return thumbnail path
+            // create cropped path
+            $cropped_path = $this->module->baseMediaPath.'/'.
+                            $file;
+
+            // thumbnail path
+            $thumb_path = $this->module->baseMediaPath.'/'.
+                          $this->module->imageThumbsDir.'/'.
+                          $file;
+
+            // return thumbnail url
             $aJson['thumb_url'] = $this->module->baseMediaUrl.'/'.
                                   $this->module->imageThumbsDir.'/'.
                                   $file;
@@ -169,50 +179,39 @@ class MediaController extends Controller
             // copy tmp file to original file location
             move_uploaded_file($_FILES['image']['tmp_name'], $original_file_path);
 
-            // thumbnail path
-            $thumb_path = $this->module->baseMediaPath.'/'.
-                          $this->module->imageThumbsDir.'/'.
-                          $file;
-
-            // create thumbnail
-            $image = Yii::app()->wideimage->load($original_file_path);
-
-            // get width, height
-            $width = $image->width;
-            $height = $image->height;
-
-            // validate, compared to thumbnail sizes
-            if ($width > $this->module->imageThumbWidth || $height > $this->module->imageThumbHeight) {
-                // calculate center of crop
-                //$topOffset = (int)(($height/2) - ($this->module->imageThumbHeight/2));
-                //$leftOffset = (int)($width/2) - ($this->module->imageThumbWidth/2);
-                //Yii::trace(__METHOD__ . " (" . __LINE__ . "): crop/adaptive with width:".$this->module->imageThumbWidth." height:".$this->module->imageThumbHeight, 'user');
-                //$image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight);
-                $image->crop(100, 100, 'center')->save($thumb_path);
-            } else {
-                // save without cropping
-                $image->save($thumb_path);
-            }
-
-            // cropped path
-            $cropped_path = $this->module->baseMediaPath.'/'.
-                            $file;
 
             // create cropped image
             $image = Yii::app()->wideimage->load($original_file_path);
 
             // resize
-            $image->adaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true);
+            $image->adaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true)
+                  ->save($cropped_path);
 
-            // save size, dimensions
-            $aJson['cropped_width'] = $image->width;
-            $aJson['cropped_height'] = $image->height;
 
-            // finally...save it
-            $image->save($cropped_path);
-
-            // then return size of the cropped image file
+            // get size of the cropped image file
             $aJson['cropped_size'] = filesize($cropped_path);
+
+            // get dimensions of the cropped file
+            $aDim = getimagesize($cropped_path);
+
+            // save width, height
+            $width = $aDim[0];
+            $height = $aDim[1];
+
+            // return them
+            $aJson['cropped_width'] = $width;
+            $aJson['cropped_height'] = $height;
+
+
+            // are cropped file dimensions larger than thumbnail dimensions?
+            if ($width > $this->module->imageThumbWidth || $height > $this->module->imageThumbHeight) {
+                // calculate center of crop
+                $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, 'center')->
+                      ->save($thumb_path);
+            } else {
+                // save without cropping
+                $image->save($thumb_path);
+            }
 
         }
 

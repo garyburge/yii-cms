@@ -74,6 +74,7 @@ class m130719_101014_create_content_tables extends CDbMigration
             'copyright'=>'VARCHAR(255) NULL DEFAULT NULL',
             'height'=>'INTEGER NULL DEFAULT NULL',
             'width'=>'INTEGER NULL DEFAULT NULL',
+            'size'=>'INTEGER NULL DEFAULT NULL',
             'created'=>'INTEGER NULL DEFAULT NULL',
             'updated'=>'INTEGER NULL DEFAULT NULL',
         ), $this->sqlOptions);
