@@ -8,7 +8,8 @@ $(document).ready(function() {
         mediaFileId: g_mediaFileId,
         mediaHeightId: g_mediaHeightId,
         mediaWidthId: g_mediaWidthId,
-        mediaSizeId: g_mediaSizeId
+        mediaSizeId: g_mediaSizeId,
+        mediaMediaTypeIdId: g_mediaMediaTypeIdId
     };
 
     // set some dropzone options
@@ -38,6 +39,7 @@ $(document).ready(function() {
                     $('#'+app.mediaHeightId).val(data.cropped_height);
                     $('#'+app.mediaWidthId).val(data.cropped_width);
                     $('#'+app.mediaSizeId).val(data.cropped_size);
+                    $('#'+app.mediaMediaTypeIdId).val(data.media_type_id);
                     // set image tage src attribute
                     $('#'+app.imgTagId).attr('src', data.thumb_url);
                     // show image div, hide dropzone div
