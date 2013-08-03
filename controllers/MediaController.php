@@ -186,7 +186,7 @@ class MediaController extends Controller
                 // calculate center of crop
                 $topOffset = (int)(($height/2) - ($this->module->imageThumbHeight/2));
                 $leftOffset = (int)($width/2) - ($this->module->imageThumbWidth/2);
-                $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, $topOffset, $leftOffset);
+                $image->crop($this->module->imageThumbWidth, $this->module->imageThumbHeight, 'center', 'center');
             }
 
             // save thumbnail image
