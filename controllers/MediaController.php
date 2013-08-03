@@ -130,7 +130,7 @@ class MediaController extends Controller
      */
     public function actionImageUpload()
     {
-        $aResult = array(
+        $aJson = array(
             'bError'=>false,
             'sMessage'=>'',
             'aErrors'=>false,
@@ -141,17 +141,17 @@ class MediaController extends Controller
         );
 
         if (isset($_FILES)) {
-            $aResult['_FILES'] = print_r($_FILES, true);
+            $aJson['_FILES'] = print_r($_FILES, true);
 
             // save original file size
             $original_file = $_FILES['image']['name'];
-            $aResult['original_file'] = $original_file;
+            $aJson['original_file'] = $original_file;
 
             // get extension
             $aParts = pathinfo($original_file);
 
             $file = md5($original_file.time()).'.'.$aParts['extension'];
-            $aResult['file'] = $file;
+            $aJson['file'] = $file;
 
             // create original file path
             $original_file_path = $this->module->baseMediaPath.'/'.
@@ -159,9 +159,9 @@ class MediaController extends Controller
                                   $file;
 
             // return thumbnail path
-            $aRequest['thumb_url'] = $this->module->baseMediaUrl.'/'.
-                                     $this->module->imageThumbsDir.'/'.
-                                     $file;
+            $aJson['thumb_url'] = $this->module->baseMediaUrl.'/'.
+                                  $this->module->imageThumbsDir.'/'.
+                                  $file;
 
             // copy tmp file to original file location
             move_uploaded_file($_FILES['image']['tmp_name'], $original_file_path);
@@ -204,7 +204,7 @@ class MediaController extends Controller
         }
 
         // return data
-        echo CJSON::encode($aResult);
+        echo CJSON::encode($aJson);
         Yii::app()->end();
     }
 

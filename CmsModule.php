@@ -20,7 +20,7 @@ class CmsModule extends CWebModule
 
     // upload directories
     public $imageOriginalDir = 'original';
-    public $imageThumbsDir = 'thumbs';
+    public $imageThumbsDir = 'thumb';
     public $baseMediaPath = '/../../../assets/media';
     public $baseMediaUrl = 'assets/media';
 
@@ -51,7 +51,7 @@ class CmsModule extends CWebModule
 		));
 
         // set paths
-        $this->baseMediaPath = dirname(__FILE__).$this->baseMediaPath;
+        $this->baseMediaPath = realpath(dirname(__FILE__).$this->baseMediaPath);
 
         // publish cms assets
         $this->publishAssets();
