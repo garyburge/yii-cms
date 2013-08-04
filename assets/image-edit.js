@@ -59,8 +59,9 @@ $(document).ready(function() {
             // landscape
             if (app.image.width > app.canvas.width) {
                 // scale image so image.width = canvas.width
-                app.bitmap.width = app.canvas.width;
-                app.bitmap.height = (app.canvas.width / app.image.width) * app.image.height;
+                scaleFactor = (app.canvas.width / app.image.width);
+                app.bitmap.scaleX = scaleFactor;
+                app.bitmap.height = scaleFactor;
             }
         } else {
             // portrait or equal height/width
