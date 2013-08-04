@@ -145,7 +145,7 @@ class MediaController extends Controller
             'media_type_id'=>0,
         );
 
-        if (isset($_FILES)) {
+        if (isset($_FILES['image'])) {
 
             // save original file name
             $original_file = $_FILES['image']['name'];
