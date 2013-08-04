@@ -26,7 +26,7 @@ $(document).ready(function() {
 
     // create imate
     app.image = new Image();
-    app.image.src = imageOriginalDir+'/'+media_original_file;
+    app.image.src = app.imageOriginalDir+'/'+app.media_original_file;
     app.image.onload = handleImageLoad;
 
     // handle image loading
