@@ -27,6 +27,8 @@ class CmsImageEdit extends CWidget
   		$assetsPath = Yii::getPathOfAlias('easeljs.lib');
 		$this->easelJsAssetsUrl = Yii::app()->assetManager->publish($assetsPath, false, -1, false);
 
+        // need easeljs script files
+        Yii::app()->clientScript->registerScriptFile($this->easelJsAssetsUrl.'/easeljs-0.6.1.min.js')
     }
 
     public function run()
