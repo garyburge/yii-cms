@@ -10,6 +10,10 @@ class CmsImageEdit extends CWidget
      * @var string url to EaselJS assets
      */
     public $easelJsAssetsUrl;
+    /**
+     * @var string url to Jcrop assets
+     */
+    public $jcropAssetsUrl;
 
     /**
      * Initialize widget
