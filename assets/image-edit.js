@@ -37,7 +37,7 @@ $(document).ready(function() {
         app.stage = new createjs.Stage(app.canvas);
 
         app.bitmap = new createjs.Bitmap(app.image);
-        app.bitmap.scaleX = bitmap.scaleY = 2;
+        app.bitmap.scaleX = app.bitmap.scaleY = 2;
         app.bitmap.cache(0, 0, app.image.width, app.image.height);
         app.stage.addChild(app.bitmap);
 
