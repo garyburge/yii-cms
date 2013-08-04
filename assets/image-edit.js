@@ -19,6 +19,7 @@ $(document).ready(function() {
         bitmap: null
     }
 
+    // turn on loader image
     document.getElementById("loader").className = "loader";
 
     //find canvas and load images, wait for last image to load
@@ -39,14 +40,21 @@ $(document).ready(function() {
 
     // handle image loading
     function handleImageLoad(event) {
+
+        // turn off loader image
         document.getElementById("loader").className = "";
+
+        // save canvas width, height
+        app.canvas_width = app.canvas.width;
+        var app.canvas_height = app.canvas.height;
 
         // create stage
         app.stage = new createjs.Stage(app.canvas);
 
         app.bitmap = new createjs.Bitmap(app.image);
-        app.bitmap.scaleX = app.bitmap.scaleY = 2;
-        app.bitmap.cache(0, 0, app.image.width, app.image.height);
+        app.bitmap.x = (app.canvas.width-2 * app.image.width)/3;
+		app.bitmap.y = (app.canvas.height-2 * app.image.height)/3;
+        //app.bitmap.cache(0, 0, app.image.width, app.image.height);
         app.stage.addChild(app.bitmap);
 
         updateImage();
