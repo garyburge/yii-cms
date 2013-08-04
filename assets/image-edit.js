@@ -51,10 +51,26 @@ $(document).ready(function() {
         // create stage
         app.stage = new createjs.Stage(app.canvas);
 
+        // create bitmap
         app.bitmap = new createjs.Bitmap(app.image);
-        app.bitmap.x = (app.canvas.width-2 * app.image.width)/3;
-		app.bitmap.y = (app.canvas.height-2 * app.image.height)/3;
-        //app.bitmap.cache(0, 0, app.image.width, app.image.height);
+
+        // scale image to fit within canvas
+        if (app.image.width > app.image.height) {
+            // landscape
+            if (app.image.width > app.canvas.width) {
+                // scale image so image.width = canvas.width
+                app.bitmap.width = app.canvas.width;
+                app.bitmap.height = (app.canvas.width / app.image.width) * app.image.height;
+            }
+        } else {
+            // portrait or equal height/width
+        }
+
+        //app.bitmap.x = (app.canvas.width-2 * app.image.width)/3;
+		//app.bitmap.y = (app.canvas.height-2 * app.image.height)/3;
+        app.bitmap.cache(0, 0, app.image.width, app.image.height);
+
+
         app.stage.addChild(app.bitmap);
 
         updateImage();
