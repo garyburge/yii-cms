@@ -61,6 +61,7 @@ class Media extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('original_file, file, title, caption, attribution, copyright', 'filter', 'filter'=>'trim'),
 			array('media_type_id, original_file, file, title', 'required'),
 			array('media_type_id, height, width, size, created, updated', 'numerical', 'integerOnly'=>true),
 			array('original_file, file, title, attribution, copyright', 'length', 'max'=>255),
@@ -79,6 +80,7 @@ class Media extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'media_type'=>array(self::BELONGS_TO, 'MediaType', 'media_type_id')
 		);
 	}
 
