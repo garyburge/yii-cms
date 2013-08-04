@@ -29,6 +29,10 @@ class CmsImageEdit extends CWidget
 
         // need easeljs script files
         Yii::app()->clientScript->registerScriptFile($this->easelJsAssetsUrl.'/easeljs-0.6.1.min.js');
+
+        // and then our own javascript
+        Yii::app()->clientScript->registerScriptFile($this->controller->module->assetsUrl.'/image-edit.js');
+
     }
 
     public function run()
