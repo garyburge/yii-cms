@@ -68,7 +68,7 @@ $(document).ready(function() {
 
         //app.bitmap.x = (app.canvas.width-2 * app.image.width)/3;
 		//app.bitmap.y = (app.canvas.height-2 * app.image.height)/3;
-        app.bitmap.cache(0, 0, app.image.width, app.image.height);
+        app.bitmap.cache(0, 0, app.bitmap.width, app.bitmap.height);
 
 
         app.stage.addChild(app.bitmap);
