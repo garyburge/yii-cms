@@ -10,8 +10,8 @@
         <dt>Type:</dt><dd><?php echo (!empty($data->media_type->description) ? $data->media_type->description : ''); ?></dd>
         <dt>File:</dt><dd><?php echo (!empty($data->original_file) ? $data->original_file : ''); ?></dd>
         <dt>Width X Height:</dt><dd><?php echo $data->width.' x '.$data->height; ?></dd>
-        <dt>Size:</dt><dd><?php echo Yii::app()->format->formatDecimal($data->size / 1024).' Kb'; ?></dd>
-        <dt>Created:</dt><dd><?php echo Yii::app()->format->formatDateTime($data->created); ?></dd>
-        <dt>Updated:</dt><dd><?php echo Yii::app()->format->formatDateTime($data->updated); ?></dd>
+        <dt>Size:</dt><dd><?php echo Yii::app()->numberFormatter->formatDecimal($data->size / 1024).' Kb'; ?></dd>
+        <dt>Created:</dt><dd><?php echo Yii::app()->dateFormatter->formatDateTime($data->created); ?></dd>
+        <dt>Updated:</dt><dd><?php echo Yii::app()->dateFormatter->formatDateTime($data->updated); ?></dd>
     </dl>
 </li>
