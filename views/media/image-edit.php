@@ -7,7 +7,6 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<img src="<?php echo $this->module->baseMediaUrl.'/'.$model->file; ?>" alt="<?php echo $model->title; ?>">
-<h5><?php echo $model->title; ?></h4>
-<p><?php echo $model->caption; ?></p>
-
+<?php $this->widget('cms.widgets.CmsImageEdit', array(
+    'model'=>$model,
+));
