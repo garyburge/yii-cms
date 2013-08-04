@@ -227,7 +227,7 @@ class MediaController extends Controller
      * Edit an image
      * @param integer $id the ID of the model to be edited
      */
-    public function actionImageEdit()
+    public function actionImageEdit($id)
     {
         $this->render('image-edit', array(
             'model'=>$this->loadModel($id),
