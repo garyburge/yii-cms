@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 
+    // application data
     app = {
         imgTagId: g_imgTagId,
         mediaOriginalFileId: g_mediaOriginalFileId,
