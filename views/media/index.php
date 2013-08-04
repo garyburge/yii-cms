@@ -8,8 +8,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Media Library</h1>
+<h2>Media Library</h2>
 
+<a href="<?php $this->createUrl('/cms/media/imageupload'); ?>" title="Click to upload a new image" class="pull-right">Create</a>
 <ul class="thumbnails">
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,
