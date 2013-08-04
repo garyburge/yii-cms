@@ -65,7 +65,6 @@ class MediaController extends Controller
 
     /**
      * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate()
     {
@@ -77,7 +76,7 @@ class MediaController extends Controller
         if (isset($_POST['Media'])) {
             $model->attributes = $_POST['Media'];
             if ($model->save())
-                $this->redirect(array('view', 'id'=>$model->id));
+                $this->redirect(array('index'));
         }
 
         $this->render('create', array(
@@ -87,7 +86,6 @@ class MediaController extends Controller
 
     /**
      * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id)
@@ -100,7 +98,7 @@ class MediaController extends Controller
         if (isset($_POST['Media'])) {
             $model->attributes = $_POST['Media'];
             if ($model->save())
-                $this->redirect(array('view', 'id'=>$model->id));
+                $this->redirect(array('index'));
         }
 
         $this->render('update', array(
