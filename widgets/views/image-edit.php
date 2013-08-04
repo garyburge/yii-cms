@@ -7,10 +7,28 @@
 ?>
 <div id="loader"></div>
 
-<div class="div-image-edit">
-	<canvas id="canvas-image-edit" width="800" height="800"></canvas>
-</div>
-<a id="btn-select-tool" class="btn btn-small" href="#">Select Tool</a>
+<div class="row">
+    <div class="span9">
+        <div class="div-image-edit">
+            <canvas id="canvas-image-edit" width="800" height="800"></canvas>
+        </div>
+    </div><!-- .span9 -->
+    <div class="span3">
+        <div id="controls-accordion">
+            <h3>Resize</h3>
+            <div>
+            </div>
+            <h3>Crop</h3>
+            <div>
+                <a id="btn-select-tool" class="btn btn-small" href="#">Select Tool</a>
+            </div>
+            <h3>Color</h3>
+            <div>
+            </div>
+        </div>
+    </div><!-- .span3 -->
+</div><!-- .row -->
+
 
 <script>
     var g_imageOriginalDir = '<?php echo $this->controller->module->imageOriginalDir; ?>';

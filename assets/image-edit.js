@@ -38,6 +38,9 @@ $(document).ready(function() {
         return false;
     })
 
+    // initialize control accordion
+    $('#controls-accordion').accordion();
+    
     // handle image loading
     function handleImageLoad(event) {
 

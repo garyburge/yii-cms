@@ -241,6 +241,8 @@ class MediaController extends Controller
      */
     public function actionImageEdit($id)
     {
+        $this->layout='//layouts/column1';
+        
         $this->render('image-edit', array(
             'model'=>$this->loadModel($id),
         ));
