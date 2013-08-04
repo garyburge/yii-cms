@@ -61,7 +61,7 @@ $(document).ready(function() {
                 // scale image so image.width = canvas.width
                 scaleFactor = (app.canvas.width / app.image.width);
                 app.bitmap.scaleX = scaleFactor;
-                app.bitmap.height = scaleFactor;
+                app.bitmap.scaleY = scaleFactor;
             }
         } else {
             // portrait or equal height/width
