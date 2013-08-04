@@ -4,7 +4,7 @@
     </a>
     <h3><?php $data->title; ?></h3>
     <?php echo (!empty($data->caption) ? '<p>'.$data->caption.'</p>' : ''); ?>
-    <dl class="dl-horizontal">
+    <dl>
         <dt>Attribution:</dt><dd><?php echo (!empty($data->attribution) ? $data->attribution : ''); ?></dd>
         <dt>Copyright:</dt><dd><?php echo (!empty($data->copyright) ? $data->copyright : ''); ?></dd>
         <dt>Type:</dt><dd><?php echo (!empty($data->media_type->description) ? $data->media_type->description : ''); ?></dd>
