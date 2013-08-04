@@ -18,7 +18,7 @@
     var g_baseMediaUrl = '<?php echo $this->controller->module->baseMediaUrl; ?>';
     var g_media_id = <?php echo $model->id; ?>;
     var g_media_original_file = '<?php echo $model->original_file; ?>';
-    var g_media_file = '<?php echo $model->file; ?>;
+    var g_media_file = '<?php echo $model->file; ?>';
     var g_media_height = <?php echo $model->height; ?>;
-    var g_media_width = <?php echo $model->width; ?>';
+    var g_media_width = <?php echo $model->width; ?>;
 </script>
