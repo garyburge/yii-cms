@@ -185,7 +185,7 @@ class MediaController extends Controller
             $image = Yii::app()->wideimage->load($original_file_path);
 
             // resize
-            $image->adaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, true)
+            $image->adaptive($this->module->imageMaxWidth, $this->module->imageMaxHeight, false)
                   ->save($cropped_path);
 
 
