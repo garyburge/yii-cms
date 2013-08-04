@@ -27,7 +27,7 @@ class MediaController extends Controller
     {
         return array(
             array('allow',
-                'actions'=>array('index', 'view', 'create', 'update', 'delete', 'imageUpload'),
+                'actions'=>array('index', 'view', 'create', 'update', 'delete', 'imageUpload', 'imageEdit'),
                 'roles'=>$this->module->authRolesMedia
             ),
             array('deny', // deny all users
@@ -42,7 +42,7 @@ class MediaController extends Controller
     public function actionIndex()
     {
         $this->layout = '//layouts/column1';
-        
+
         // create data provider
         $dataProvider = new CActiveDataProvider('Media');
 
@@ -221,6 +221,17 @@ class MediaController extends Controller
         // return data
         echo CJSON::encode($aJson);
         Yii::app()->end();
+    }
+
+    /**
+     * Edit an image
+     * @param integer $id the ID of the model to be edited
+     */
+    public function actionImageEdit()
+    {
+        $this->render('image-edit', array(
+            'model'=>$this->loadModel($id),
+        ));
     }
 
     /**
