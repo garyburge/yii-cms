@@ -7,10 +7,10 @@ $(document).ready(function() {
         baseMediaPath: g_baseMediaPath,
         baseMediaUrl: g_baseMediaUrl,
         media_id: g_media_id,
-        media_original_file: g_original_file,
-        media_file: g_file,
-        media_height: g_height,
-        media_width: g_width,
+        media_original_file: g_media_original_file,
+        media_file: g_media_file,
+        media_height: g_media_height,
+        media_width: g_media_width,
         canvas: null,
         canvas_width: 0,
         canvas_height: 0,
@@ -32,7 +32,7 @@ $(document).ready(function() {
     // handle image loading
     function handleImageLoad(event) {
         document.getElementById("loader").className = "";
-        
+
         // create stage
         app.stage = new createjs.Stage(app.canvas);
 
