@@ -1,8 +1,10 @@
-  <li class="span4">
+<li class="span4">
     <a href="<?php echo $this->module->baseMediaUrl.'/'.$data->file; ?>" class="thumbnail">
-      <img src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$data->file; ?>" alt="">
+        <img src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$data->file; ?>" alt="">
     </a>
-  </li>
+    <h3><?php $data.title</h3>
+    <?php if (!empty($data->caption) { echo "<p>".$data->caption."</p>"; } ?>
+</li>
 
 <!--
 <div class="view">
