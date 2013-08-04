@@ -46,7 +46,7 @@ $(document).ready(function() {
 
         // save canvas width, height
         app.canvas_width = app.canvas.width;
-        var app.canvas_height = app.canvas.height;
+        app.canvas_height = app.canvas.height;
 
         // create stage
         app.stage = new createjs.Stage(app.canvas);
