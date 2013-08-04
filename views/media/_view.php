@@ -2,7 +2,7 @@
     <a href="<?php echo $this->module->baseMediaUrl.'/'.$data->file; ?>" class="thumbnail">
         <img src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$data->file; ?>" alt="">
     </a>
-    <h3><?php $data>title; ?></h3>
+    <h3><?php $data->title; ?></h3>
     <?php echo (!empty($data->caption) ? '<p>'.$data->caption.'</p>' : ''); ?>
     <dl class="dl-horizontal">
         <dt>Attribution:</dt><dd><?php echo (!empty($data->attribution) ? $data->attribution : ''); ?></dd>
