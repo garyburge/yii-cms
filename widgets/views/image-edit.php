@@ -10,6 +10,7 @@
 <div class="div-image-edit">
 	<canvas id="canvas-image-edit" width="800" height="800"></canvas>
 </div>
+<a id="btn-select-tool" class="btn btn-small" href="#">Select Tool</a>
 
 <script>
     var g_imageOriginalDir = '<?php echo $this->controller->module->imageOriginalDir; ?>';

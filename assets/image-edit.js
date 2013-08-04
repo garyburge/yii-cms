@@ -29,6 +29,14 @@ $(document).ready(function() {
     app.image.src = app.baseMediaUrl+'/'+app.imageOriginalDir+'/'+app.media_file;
     app.image.onload = handleImageLoad;
 
+    // bind to select tool
+    $('#btn-select-tool').on('click', function(e) {
+        e.stopPropagation();
+        // attach Jcrop
+        $('#canvas-image-edit').Jcrop();
+        return false;
+    })
+
     // handle image loading
     function handleImageLoad(event) {
         document.getElementById("loader").className = "";
@@ -42,6 +50,8 @@ $(document).ready(function() {
         app.stage.addChild(app.bitmap);
 
         updateImage();
+
+
 
     }
 
