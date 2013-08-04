@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
 ?>
+<div id="loader"></div>
 
 <div class="div-image-edit">
 	<canvas id="canvas-image-edit" width="800" height="800"></canvas>

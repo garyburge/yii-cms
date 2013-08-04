@@ -19,6 +19,8 @@ $(document).ready(function() {
         bitmap: null
     }
 
+    document.getElementById("loader").className = "loader";
+
     //find canvas and load images, wait for last image to load
     app.canvas = document.getElementById("testCanvas");
 
@@ -29,6 +31,8 @@ $(document).ready(function() {
 
     // handle image loading
     function handleImageLoad(event) {
+        document.getElementById("loader").className = "";
+        
         // create stage
         app.stage = new createjs.Stage(app.canvas);
 
