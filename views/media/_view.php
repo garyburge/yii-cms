@@ -1,6 +1,9 @@
 <li class="span3">
-    <a href="<?php echo $this->module->baseMediaUrl.'/'.$data->file; ?>" class="thumbnail">
-        <img src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$data->file; ?>" alt="">
+    <div>
+        <a href="<?php echo $this->createUrl('/cms/media/imageedit', array('id'=>$data->id)); ?>" title="Click to edit this image">Edit</a>
+    </div>
+    <a href="<?php echo $this->createUrl('/cms/media/view', array('id'=>$data->id)); ?>" class="thumbnail">
+        <img src="<?php echo $this->module->baseMediaUrl.'/'.$this->module->imageThumbsDir.'/'.$data->file; ?>" alt="image">
     </a>
     <h3><?php $data->title; ?></h3>
     <?php echo (!empty($data->caption) ? '<p>'.$data->caption.'</p>' : ''); ?>

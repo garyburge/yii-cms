@@ -41,6 +41,8 @@ class MediaController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = '//layouts/column1';
+        
         // create data provider
         $dataProvider = new CActiveDataProvider('Media');
 
