@@ -1,7 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Medias'=>array('index'),
-	$model->title=>array('view','id'=>$model->id),
+	'Media Library'=>array('index'),
 	'Update',
 );
 

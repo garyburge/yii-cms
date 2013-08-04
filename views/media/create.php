@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Medias'=>array('index'),
+	'Media Library'=>array('index'),
 	'Create',
 );
 
