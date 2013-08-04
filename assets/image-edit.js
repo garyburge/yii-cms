@@ -22,7 +22,7 @@ $(document).ready(function() {
     document.getElementById("loader").className = "loader";
 
     //find canvas and load images, wait for last image to load
-    app.canvas = document.getElementById("testCanvas");
+    app.canvas = document.getElementById('canvas-image-edit');
 
     // create imate
     app.image = new Image();
