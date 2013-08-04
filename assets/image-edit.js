@@ -67,8 +67,8 @@ $(document).ready(function() {
             // portrait or equal height/width
         }
 
-        //app.bitmap.x = (app.canvas.width-2 * app.image.width)/3;
-		//app.bitmap.y = (app.canvas.height-2 * app.image.height)/3;
+        app.bitmap.x = 0;   //(app.canvas.width-2 * app.image.width)/3;
+		app.bitmap.y = 0;   //(app.canvas.height-2 * app.image.height)/3;
         app.bitmap.cache(0, 0, app.image.width, app.image.height);
 
         app.stage.addChild(app.bitmap);
