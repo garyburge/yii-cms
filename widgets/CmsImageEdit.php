@@ -20,6 +20,7 @@ class CmsImageEdit extends CWidget
     {
         $this->render('image-edit', array(
             'model'=>$this->model
-        ))
+        ));
     }
+
 }
