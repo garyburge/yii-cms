@@ -20,8 +20,8 @@ class CmsImageEdit extends CWidget
         parent::init();
 
         // need jquery and jquery.ui
-        Yii::app()->clientScript->registerCore('jquery');
-        Yii::app()->clientScript->registerCore('jquery.ui');
+        Yii::app()->clientScript->registerCoreScript('jquery');
+        Yii::app()->clientScript->registerCoreScript('jquery.ui');
 
         // if not published
   		$assetsPath = Yii::getPathOfAlias('easeljs.lib');
