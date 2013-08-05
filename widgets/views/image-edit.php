@@ -16,6 +16,7 @@
     <div class="span3">
         <div id="controls-tools">
             <button id="btn-crop" class="btn btn-mini" style="width:24px; height:24px;"><i class="icon-crop" style="font-size:16px;"></i></button>
+            <a href="#" class="btn"><i class="icon-crop"></i></a>
             <a id="btn-crop-off" href="#">(off)</a>
         </div>
         <div id="controls-accordion">
