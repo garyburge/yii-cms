@@ -14,19 +14,13 @@
         </div>
     </div><!-- .span9 -->
     <div class="span3">
-        <div id="controls-tools">
-            <button id="btn-crop" class="btn btn-mini" style="width:24px; height:24px;"><i class="icon-crop" style="font-size:16px;"></i></button>
-            <a href="#" class="btn"><i class="icon-crop"></i></a>
-            <i class="icon-crop"></i>
-            <a id="btn-crop-off" href="#">(off)</a>
-        </div>
         <div id="controls-accordion">
             <h3>Resize</h3>
             <div>
             </div>
             <h3>Crop</h3>
             <div>
-                <a id="btn-select-tool" class="btn btn-small" href="#">Select Tool</a>
+                <a id="btn-select-tool" class="btn btn-small" href="#"><i class="icon-crop"></i> Select Tool</a>
             </div>
             <h3>Color</h3>
             <div>
