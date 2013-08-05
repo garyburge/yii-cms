@@ -14,6 +14,10 @@
         </div>
     </div><!-- .span9 -->
     <div class="span3">
+        <div id="controls-tools">
+            <a id="btn-crop" class="btn" href="#"><i class="icon-crop"></i></a>
+            <a id="btn-crop-off" href="#">(off)</a>
+        </div>
         <div id="controls-accordion">
             <h3>Resize</h3>
             <div>
